@@ -51,9 +51,11 @@ public class NetworkClient : MonoBehaviour
                 parent.clientIDs = new byte[6];
                 for (int i = 0; i < 6; i++) {
                     parent.clientIDs[i] = resp[i+1];
+                    
+                    if (parent.clientIDs[i] == parent.clientID) continue;
 
-                    if (parent.clientIDs[i] != 0 && parent.players[i].clientID == 0) {
-                        parent.players[i].clientID = parent.clientIDs[i];
+                    for (int a = 0; a < parent.players.Length; a++) {
+                        if (parent.players[a].clientID == 0) parent.players[a].clientID = parent.clientIDs[i];
                     }
                 }
             }
