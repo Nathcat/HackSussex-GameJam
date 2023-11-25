@@ -19,11 +19,13 @@ public class NetworkServer : MonoBehaviour
         }
 
         public void Proc() {
-            parent.server = new TcpListener(IPAddress.Parse("127.0.0.1"), 10000);
+            parent.server = new TcpListener(IPAddress.Parse("0.0.0.0"), 10000);
             parent.server.Start();
         
             while (parent.networkState == STATE_ACCEPTING_PLAYERS && parent.pClientsEnd != 6 && parent.runThreads) {
-                while (!parent.server.Pending() && parent.networkState == STATE_ACCEPTING_PLAYERS && parent.runThreads) {}
+                while (!parent.server.Pending() && parent.networkState == STATE_ACCEPTING_PLAYERS && parent.runThreads) {
+                    Debug.Log("Server: Waiting for clients");
+                }
 
                 if (parent.networkState != STATE_ACCEPTING_PLAYERS) {
                     break;
@@ -165,5 +167,6 @@ public class NetworkServer : MonoBehaviour
 
     void OnApplicationQuit() {
         runThreads = false;
+        server.Stop();
     }
 }

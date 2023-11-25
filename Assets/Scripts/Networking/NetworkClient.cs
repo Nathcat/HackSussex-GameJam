@@ -172,5 +172,7 @@ public class NetworkClient : MonoBehaviour
 
     void OnApplicationQuit() {
         runThreads = false;
+        stream.Close();
+        socket.Close();
     }
 }
