@@ -48,11 +48,14 @@ public class NetworkClient : MonoBehaviour
             resp = new byte[7];
             parent.stream.Read(resp, 0, 7);
             if (resp[0] == NetworkServer.PACKETTYPE_CLIENTSAWARE) {
+                parent.gameObject.GetComponent<NetworkedPlayer>().clientID = parent.clientID;
+                parent.gameObject.GetComponent<NetworkedPlayer>().allowSet = false;
+                
                 parent.clientIDs = new byte[6];
                 for (int i = 0; i < 6; i++) {
                     parent.clientIDs[i] = resp[i+1];
 
-                    if (parent.clientIDs[i] != 0 && parent.clientIDs[i] != parent.clientID) {
+                    if (parent.clientIDs[i] != 0 && parent.players[i].clientID == 0) {
                         parent.players[i].clientID = parent.clientIDs[i];
                     }
                 }

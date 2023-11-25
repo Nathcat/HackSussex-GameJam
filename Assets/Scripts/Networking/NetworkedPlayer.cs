@@ -6,8 +6,11 @@ public class NetworkedPlayer : MonoBehaviour
 {
     public byte clientID;
     public Vector3 position = Vector3.zero;
+    public bool allowSet = true;
 
     public void Update() {
-        transform.position = position;
+        if (allowSet) {
+            transform.position = position;
+        }
     }
 }
