@@ -117,31 +117,24 @@ public class NetworkServer : MonoBehaviour
                 parent.streams[i].Read(update, 0, update.Length);
 
                 if (update[0] != PACKETTYPE_FRAME_UPDATE) continue;
-                
-                byte[] x = new byte[4];
-                byte[] y = new byte[4];
-                byte[] z = new byte[4];
-
-                Buffer.BlockCopy(update, 2, x, 0, 4);
-                Buffer.BlockCopy(update, 6, y, 0, 4);
-                Buffer.BlockCopy(update, 10, z, 0, 4);
-
-                Vector3 clientPosition = new Vector3(
-                    BitConverter.ToSingle(x),
-                    BitConverter.ToSingle(y),
-                    BitConverter.ToSingle(z)
-                );
-
-                // Do smth with this idk
-                Debug.Log("Server: Got position " + clientPosition.ToString() + " from client " + update[1]);
+    
+                // Create the door packet
+                GameObject[] doors = GameObject.FindGameObjectsWithTag("door");
+                byte[] door_packet = new byte[doors.Length + 5];
+                door_packet[0] = PACKETTYPE_DOORUPDATE;
+                byte[] length_buffer = BitConverter.GetBytes(doors.Length);
+                Buffer.BlockCopy(length_buffer, 0, door_packet, 1, 4);
+                for (int i = 0; i < doors.Length; i++) {
+                    door_packet[i+5] = doors[i].GetComponent<doorScript>().id;
+                }
 
                 // Forward to other clients 
-                // TODO This will change later with the door implementation
                 for (int a = 0; a < 6; a++) {
                     if (a == i) continue;
                     if (parent.clients[a] == null) break;
 
                     parent.streams[a].Write(update, 0, 14);
+                    parent.streams[a].Write(door_packet);
                 }
             }
         }
