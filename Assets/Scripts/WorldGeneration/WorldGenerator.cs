@@ -38,7 +38,7 @@ public class WorldGenerator : MonoBehaviour
     {
         Directions current = connectionsMap[x, y];
         if (current.up && !ExistsAt(x, y + 1)) GenerateRoomAt(x, y + 1);
-        if (current.right && !ExistsAt(x - 1, y)) GenerateRoomAt(x + 1, y);
+        if (current.right && !ExistsAt(x + 1, y)) GenerateRoomAt(x + 1, y);
         if (current.down && !ExistsAt(x, y - 1)) GenerateRoomAt(x, y - 1);
         if (current.left && !ExistsAt(x - 1, y)) GenerateRoomAt(x - 1, y);
     }
