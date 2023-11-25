@@ -1,0 +1,26 @@
+Frame update packet --
+1       Packet type
+2       ClientID
+3 > 6   X position
+7 > 10  Y position
+11 > 14 Z position
+
+Replies with
+1 Packet type
+2 number of doors (n)
+3 number of players (m)
+4 > (4 + n) door state
+(4 + n) > (4 + n + m) player locations
+
+
+World gen --
+1     Packet type
+2 > 5 World seed
+
+Client join --
+1 Packet type
+2 ClientID
+
+Replies with
+1 Packet type
+2 Join state (MSB is boolean for allowed, LSB is boolean for hunter)
