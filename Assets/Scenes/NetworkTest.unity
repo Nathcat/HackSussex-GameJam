@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   networkState: 0
   clientIDs: 000000000000
+  doors: []
 --- !u!4 &1932150022
 Transform:
   m_ObjectHideFlags: 0
@@ -226,9 +227,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5182631374610920801, guid: a3640874fcf09a745a9c43fe02fd4dfe, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5182631374610920801, guid: a3640874fcf09a745a9c43fe02fd4dfe, type: 3}
       propertyPath: players.Array.data[1]
       value: 
       objectReference: {fileID: 9050988262453373995}
+    - target: {fileID: 5899768655476964639, guid: a3640874fcf09a745a9c43fe02fd4dfe, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -285,6 +294,10 @@ PrefabInstance:
     - target: {fileID: 7378263853851743586, guid: 17ce36bf9db420a4ea59b136054815ee, type: 3}
       propertyPath: m_Name
       value: NetworkedPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8674607467063458220, guid: 17ce36bf9db420a4ea59b136054815ee, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
