@@ -148,8 +148,8 @@ public class NetworkClient : MonoBehaviour
     }
 
     void Update() {
-        parent.gameObject.GetComponent<NetworkedPlayer>().clientID = parent.clientID;
-        parent.gameObject.GetComponent<NetworkedPlayer>().allowSet = false;
+        gameObject.GetComponent<NetworkedPlayer>().clientID = clientID;
+        gameObject.GetComponent<NetworkedPlayer>().allowSet = false;
 
         if (connected) {
             // Start sending frame updates
