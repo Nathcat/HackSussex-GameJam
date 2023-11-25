@@ -134,6 +134,8 @@ public class NetworkServer : MonoBehaviour
                     if (a == i) continue;
                     if (parent.clients[a] == null) break;
 
+                    Debug.Log("Server: Position from " + parent.clientIDs[i] + " being forwarded to " + parent.clientIDs[a]);
+
                     parent.streams[a].Write(update, 0, 14);
                     parent.streams[a].Write(door_packet);
                 }

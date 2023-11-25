@@ -133,7 +133,7 @@ public class NetworkClient : MonoBehaviour
     public bool isHunter = false;
     public bool connected = false;
     public int worldGenSeed = 0;
-    public byte[] clientIDs;
+    public byte[] clientIDs = new byte[6];
     private bool runThreads = true;
     public NetworkedPlayer[] players = new NetworkedPlayer[6];
 
