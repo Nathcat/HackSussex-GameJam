@@ -48,9 +48,6 @@ public class NetworkClient : MonoBehaviour
             resp = new byte[7];
             parent.stream.Read(resp, 0, 7);
             if (resp[0] == NetworkServer.PACKETTYPE_CLIENTSAWARE) {
-                parent.gameObject.GetComponent<NetworkedPlayer>().clientID = parent.clientID;
-                parent.gameObject.GetComponent<NetworkedPlayer>().allowSet = false;
-                
                 parent.clientIDs = new byte[6];
                 for (int i = 0; i < 6; i++) {
                     parent.clientIDs[i] = resp[i+1];
@@ -139,6 +136,7 @@ public class NetworkClient : MonoBehaviour
     public byte[] clientIDs = new byte[6];
     private bool runThreads = true;
     public NetworkedPlayer[] players = new NetworkedPlayer[6];
+    
 
     void Start() {
         clientID = (byte) UnityEngine.Random.Range(0, 255);
@@ -150,6 +148,9 @@ public class NetworkClient : MonoBehaviour
     }
 
     void Update() {
+        parent.gameObject.GetComponent<NetworkedPlayer>().clientID = parent.clientID;
+        parent.gameObject.GetComponent<NetworkedPlayer>().allowSet = false;
+
         if (connected) {
             // Start sending frame updates
             byte[] update = new byte[] {
