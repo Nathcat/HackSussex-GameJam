@@ -118,7 +118,7 @@ public class NetworkClient : MonoBehaviour
                         GameObject[] doors = GameObject.FindGameObjectsWithTag("door");
 
                         foreach (GameObject door in doors) {
-                            // TODO Need to combine with Jaiden
+                            if (door.GetComponent<doorScript>().checkId(door_buffer[0])) door.GetComponent<doorScript>().id = door_buffer[0];
                         }
                     }
                 }
