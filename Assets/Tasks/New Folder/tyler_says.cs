@@ -16,7 +16,10 @@ public class tyler_says : MonoBehaviour
     public int index = 0;
     public GameObject eventsystem;
     public GameObject host;
-
+    private void Start()
+    {
+        host.gameObject.SetActive(false);
+    }
     public void next() {
         int color = Random.Range(1, 5);
         colours.Add(color);
