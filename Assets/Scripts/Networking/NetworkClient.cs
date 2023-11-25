@@ -16,7 +16,7 @@ public class NetworkClient : MonoBehaviour
         }
 
         public void Proc() {
-            parent.socket = new TcpClient(NetworkClient.serverHostname, 10000);
+            parent.socket = new TcpClient(parent.serverHostname, 10000);
             parent.stream = parent.socket.GetStream();
 
             byte[] join_packet = new byte[] {
@@ -128,7 +128,7 @@ public class NetworkClient : MonoBehaviour
 
     private TcpClient socket;
     private NetworkStream stream;
-    public const string serverHostname = "127.0.0.1";
+    public string serverHostname = "127.0.0.1";
     public byte clientID;
     public bool isHunter = false;
     public bool connected = false;

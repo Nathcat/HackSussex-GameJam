@@ -123,52 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &1932150020
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1932150022}
-  - component: {fileID: 1932150021}
-  m_Layer: 0
-  m_Name: server
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1932150021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1932150020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e5477bc916cfe546b98f619b5989289, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  networkState: 0
-  clientIDs: 000000000000
---- !u!4 &1932150022
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1932150020}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.32374555, y: 2.1582842, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5710024212728511439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -177,10 +131,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 641369658946433000, guid: a3640874fcf09a745a9c43fe02fd4dfe, type: 3}
-      propertyPath: players.Array.data[1]
-      value: 
-      objectReference: {fileID: 9050988262453373995}
     - target: {fileID: 1191312318017182782, guid: a3640874fcf09a745a9c43fe02fd4dfe, type: 3}
       propertyPath: m_Name
       value: player
@@ -225,6 +175,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5182631374610920801, guid: a3640874fcf09a745a9c43fe02fd4dfe, type: 3}
+      propertyPath: serverHostname
+      value: 10.1.218.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 5182631374610920801, guid: a3640874fcf09a745a9c43fe02fd4dfe, type: 3}
+      propertyPath: players.Array.data[1]
+      value: 
+      objectReference: {fileID: 9050988262453373995}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -302,6 +260,5 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1932150022}
   - {fileID: 9050988262453373994}
   - {fileID: 5710024212728511439}
