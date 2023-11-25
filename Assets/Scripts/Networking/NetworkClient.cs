@@ -52,7 +52,7 @@ public class NetworkClient : MonoBehaviour
                 for (int i = 0; i < 6; i++) {
                     parent.clientIDs[i] = resp[i+1];
 
-                    if (parent.clientIDs[i] != 0) {
+                    if (parent.clientIDs[i] != 0 && parent.clientIDs[i] != parent.clientID) {
                         parent.players[i].clientID = parent.clientIDs[i];
                     }
                 }
