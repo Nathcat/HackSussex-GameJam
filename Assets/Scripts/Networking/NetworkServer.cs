@@ -121,13 +121,12 @@ public class NetworkServer : MonoBehaviour
                 if (update[0] != PACKETTYPE_FRAME_UPDATE) continue;
     
                 // Create the door packet
-                GameObject[] doors = GameObject.FindGameObjectsWithTag("door");
-                byte[] door_packet = new byte[doors.Length + 5];
+                byte[] door_packet = new byte[parent.doors.Length + 5];
                 door_packet[0] = PACKETTYPE_DOORUPDATE;
-                byte[] length_buffer = BitConverter.GetBytes(doors.Length);
+                byte[] length_buffer = BitConverter.GetBytes(parent.doors.Length);
                 Buffer.BlockCopy(length_buffer, 0, door_packet, 1, 4);
-                for (int i = 0; i < doors.Length; i++) {
-                    door_packet[i+5] = doors[i].GetComponent<doorScript>().id;
+                for (int i = 0; i < parent.doors.Length; i++) {
+                    door_packet[i+5] = parent.doors[i].GetComponent<doorScript>().id;
                 }
 
                 // Forward to other clients 
@@ -157,6 +156,7 @@ public class NetworkServer : MonoBehaviour
     public NetworkStream[] streams = new NetworkStream[6];
     private int pClientsEnd = 0;
     private bool runThreads = true;
+    public doorScript[] doors;
 
     void Start() {
         ClientsJoinThread thr = new ClientsJoinThread(this, 1);
