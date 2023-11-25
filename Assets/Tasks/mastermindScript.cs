@@ -28,7 +28,7 @@ public class mastermindScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
         code = Random.Range(0, 16);
         num1 = code / 8;
         num2 = (code % 8) / 4;
@@ -39,6 +39,35 @@ public class mastermindScript : MonoBehaviour
         {
             ones++;
         }
+        else
+        {
+            zeros++;
+        }
+        if(num2 == 1)
+        {
+            ones++;
+        }
+        else
+        {
+            zeros++;
+        }
+        if(num3 == 1)
+        {
+            ones++;
+        }
+        else
+        {
+            zeros++;
+        }
+        if(num4 == 1)
+        {
+            ones++;
+        }
+        else
+        {
+            zeros++;
+        }
+
         
 
 
@@ -105,7 +134,11 @@ public class mastermindScript : MonoBehaviour
 
     public void enter()
     {
-
+        if(digit1.text == (code / 8).ToString())
+        {
+            //ind1.color = 189119;
+        }
+        
     }
     
 }
