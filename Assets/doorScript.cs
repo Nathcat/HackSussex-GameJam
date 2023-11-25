@@ -4,81 +4,141 @@ using UnityEngine;
 
 public class doorScript : MonoBehaviour
 {
-    
-    private int id;
+    public bool vertical;
+    public byte id;
+    //public bool open;
     private Rigidbody2D rigidBody;
     private BoxCollider2D collider;
+    private float closedPos;
+    private float openPos;
+
+
     
-    
-    
-    [SerializeField]
-    private bool open;
-    //[SerializeField]
-    private double closedPos;
-    //[SerializeField]
-    private double openPos;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        open = true;
+        
         rigidBody = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
-        closedPos = gameObject.transform.position.x;
-        openPos = gameObject.transform.position.x + 3;
+
+        if(vertical)
+        {
+            closedPos = gameObject.transform.position.y;
+            openPos = gameObject.transform.position.y + 3;
+        }
+        else
+        {
+            closedPos = gameObject.transform.position.x;
+            openPos = gameObject.transform.position.x + 3;
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(open == true)
+        if(vertical)
         {
-            
-            if(gameObject.transform.position.x >= openPos)
+           
+           if((id & 0x80) == 0x80)
             {
-                rigidBody.velocity = Vector3.zero;
-                
-                //Debug.Log("a");
+                collider.enabled = false;   
+                if(gameObject.transform.position.y >= openPos)
+                {
+                    //rigidBody.velocity = Vector3.zero;
+                    float deltaY = openPos - transform.position.y;
+                    deltaY *= Time.deltaTime;
+                    transform.Translate(new Vector3(0, deltaY, 0));
+                    
+                    //Debug.Log("a");
+                }
+                else
+                {
+                    //rigidBody.AddForce(transform.up * 100 * Time.deltaTime);]
+                    float deltaY = openPos - transform.position.y;
+                    deltaY *= Time.deltaTime;
+                    transform.Translate(new Vector3(0, deltaY, 0));
+
+                }
+
             }
             else
             {
-                rigidBody.AddForce(transform.right * 100 * Time.deltaTime);
-                collider.enabled = false;
+                
+                collider.enabled = true;
+                if(gameObject.transform.position.y <= closedPos)
+                {
+                    float deltaY = closedPos - transform.position.y;
+                    deltaY *= Time.deltaTime;
+                    transform.Translate(new Vector3(0, deltaY, 0));
+                    
+                    //Debug.Log("a");
+                }
+                else
+                {
+                    float deltaY = closedPos - transform.position.y;
+                    deltaY *= Time.deltaTime;
+                    transform.Translate(new Vector3(0, deltaY, 0));
 
-            }
-
+                }
+            } 
         }
         else
         {
-            
-
-            if(gameObject.transform.position.x <= closedPos)
+            if((id & 0x80) == 0x80)
             {
-                rigidBody.velocity = Vector3.zero;
-                
-                //Debug.Log("a");
+                collider.enabled = false;   
+                if(gameObject.transform.position.x >= openPos)
+                {
+                    //rigidBody.velocity = Vector3.zero;
+                    float deltaX = openPos - transform.position.x;
+                    deltaX *= Time.deltaTime;
+                    transform.Translate(new Vector3(deltaX, 0, 0));
+                    
+                    //Debug.Log("a");
+                }
+                else
+                {
+                    //rigidBody.AddForce(transform.up * 100 * Time.deltaTime);]
+                    float deltaX = openPos - transform.position.x;
+                    deltaX *= Time.deltaTime;
+                    transform.Translate(new Vector3(deltaX, 0, 0));
+
+                }
+
             }
             else
             {
-                rigidBody.AddForce(transform.right* -100 * Time.deltaTime);
+                
                 collider.enabled = true;
+                if(gameObject.transform.position.x <= closedPos)
+                {
+                    float deltaX = closedPos - transform.position.x;
+                    deltaX *= Time.deltaTime;
+                    transform.Translate(new Vector3(deltaX, 0, 0));
+                    
+                    //Debug.Log("a");
+                }
+                else
+                {
+                    float deltaX = closedPos - transform.position.x;
+                    deltaX *= Time.deltaTime;
+                    transform.Translate(new Vector3(deltaX, 0, 0));
 
-            }
+                }
+            } 
         }
+        
     }
 
-
-
-
-
-    public void Open()
+    public bool checkId(byte check)
     {
-        open = true;
+        return (id & 0x7F) == (check & 0x7F);
     }
 
-    public void Close()
-    {
-        open = false;
-    }
+
+
+    
 }
