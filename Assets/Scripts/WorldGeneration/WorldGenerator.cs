@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class WorldGenerator : MonoBehaviour
 {
     const int MIN_ROOMS = 5;
+
+    public int NumberOfTasks = 3;
 
     [SerializeField]
     private int WorldSize = 16;
@@ -32,10 +35,32 @@ public class WorldGenerator : MonoBehaviour
         ExistenceMap = new bool[WorldSize, WorldSize];
         Random.InitState(seed);
 
-        // Begin facing up
+        // Begin with spawn room
         int half = WorldSize / 2;
         RoomConstruct spawnConstruct = SpawnRoom.GetComponent<RoomConstruct>();
         GenerateRoomAt(spawnConstruct, half, half);
+
+        // Pick task locations
+        PickTaskLocations();
+    }
+
+    public void PickTaskLocations()
+    {
+        List<TaskLocation> locations = GetComponentsInChildren<TaskLocation>().ToList();
+        for (int i = 0; i < NumberOfTasks; i++)
+        {
+            TaskLocation decision = locations[Random.Range(0, locations.Count)];
+            decision.SetupTask(i);
+
+            // Remove so it can't be used for another task
+            locations.Remove(decision);
+        }
+
+        // Delete remaining locations
+        foreach (TaskLocation location in locations)
+        {
+            Destroy(location.gameObject);
+        }
     }
 
     private void GenerateRandomRoomAt(int x, int y)
