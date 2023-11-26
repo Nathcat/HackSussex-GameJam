@@ -18,7 +18,7 @@ public class TaskLocation : MonoBehaviour
         task = Instantiate(decision).GetComponent<Task>();
         task.id = (byte) id;
 
-        NetworkClient netclient = GameObject.FindGameObjectsWithTag("netclient")[0];
+        NetworkClient netclient = GameObject.FindGameObjectsWithTag("netclient")[0].GetComponent<NetworkClient>();
         netclient.tasks.Add(task);
     }
 
