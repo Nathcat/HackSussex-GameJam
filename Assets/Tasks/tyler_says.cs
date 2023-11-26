@@ -16,7 +16,7 @@ public class tyler_says : Task
     public int index = 0;
     public GameObject eventsystem;
     public GameObject host;
-    private void load()
+    public override void load()
     {
         host.gameObject.SetActive(false);
     }

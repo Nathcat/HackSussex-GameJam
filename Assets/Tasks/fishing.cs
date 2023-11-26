@@ -17,7 +17,7 @@ public class fishing : Task
     public GameObject host;
     public GameObject fishy;
 
-    public void load()
+    public override void load()
     {
         fishy.gameObject.SetActive(false);
         StartCoroutine(fish());

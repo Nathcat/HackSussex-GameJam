@@ -14,7 +14,7 @@ public class wires : Task
     public GameObject eventsystem;
     public GameObject host;
     public string current = "";
-    public void load()
+    public override void load()
     {
         redwire.gameObject.SetActive(false);
         bluewire.gameObject.SetActive(false);

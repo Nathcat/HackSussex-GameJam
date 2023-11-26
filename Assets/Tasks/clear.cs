@@ -14,7 +14,7 @@ public class clear : Task
         complete = true;
         host.gameObject.SetActive(false);
     }
-    private void load()
+    public override void load()
     {
         host.gameObject.SetActive(false);
     }

@@ -45,7 +45,7 @@ public class mastermindScript : Task
     
     
     // Start is called before the first frame update
-    public void load()
+    public override void load()
     {
         //gameObject.SetActive(false);
         code = Random.Range(0, 16);

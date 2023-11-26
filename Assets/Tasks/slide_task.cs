@@ -22,7 +22,7 @@ public class slide_task : Task
     public GameObject host;
     
     // Start is called before the first frame update
-    public void load()
+    public override void load()
     {
 
         textbox.text = "Press the button";
