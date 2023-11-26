@@ -14,13 +14,6 @@ public class DoorButtonController : MonoBehaviour
     [SerializeField]
     private Sprite openSprite;
 
-    private SpriteRenderer spriteRenderer;
-
-    private void Start()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
     void Update()
     {
         transform.position = Camera.main.WorldToScreenPoint(Door.transform.position);
@@ -32,12 +25,12 @@ public class DoorButtonController : MonoBehaviour
         if (Open)
         {
             Door.id = (byte)(Door.id | 0x80);
-            spriteRenderer.sprite = closeSprite;
+            GetComponent<SpriteRenderer>().sprite = closeSprite;
         }
         else
         {
             Door.id = (byte)(Door.id & 0x7F);
-            spriteRenderer.sprite = openSprite;
+            GetComponent<SpriteRenderer>().sprite = openSprite;
         }
     }
 }
