@@ -17,9 +17,8 @@ public class fishing : MonoBehaviour
     public GameObject host;
     public GameObject fishy;
 
-    void Start()
+    public void load()
     {
-        host.gameObject.SetActive(false);
         fishy.gameObject.SetActive(false);
         StartCoroutine(fish());
     }
