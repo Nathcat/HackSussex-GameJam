@@ -29,6 +29,7 @@ public class testPlayerScript : MonoBehaviour
             rigidBody.AddForce(transform.up* moveConst * Time.deltaTime);
             //Debug.Log("w");
             spriteR.sprite = spriteArray[2];
+            //spriteR.OrderInLayer --; 
 
             if (Input.GetKey("a"))
             {

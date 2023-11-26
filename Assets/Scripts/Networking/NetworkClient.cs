@@ -184,6 +184,7 @@ public class NetworkClient : MonoBehaviour
             if (isHunter) {
                 gameObject.AddComponent<HunterController>();
                 gameObject.transform.GetChild(1).gameObject.SetActive(true);
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 gameObject.GetComponent<ParticleSystem>().Play();
             }
             else {
