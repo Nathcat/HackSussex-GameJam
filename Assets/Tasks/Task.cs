@@ -11,7 +11,7 @@ public class Task : MonoBehaviour
         get { return Complete; }
         set {
             Complete = value;
-            GameObject.FindObjectsWithTag("netclient")[0].GetComponent<NetworkClient>().SendTaskCompletePacket(id);
+            GameObject.FindGameObjectsWithTag("netclient")[0].GetComponent<NetworkClient>().SendTaskCompletePacket(id);
         }
     }
 

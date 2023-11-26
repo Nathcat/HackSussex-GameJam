@@ -146,7 +146,7 @@ public class NetworkClient : MonoBehaviour
                     }
                 }
                 else if (packet_type == NetworkServer.PACKETTYPE_TASK_COMPLETE) {
-                    byte[] buffer = new byte[1];
+                    buffer = new byte[1];
                     parent.stream.Read(buffer);
                     byte task_id = buffer[0];
 
