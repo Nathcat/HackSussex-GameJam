@@ -77,7 +77,7 @@ public class NetworkClient : MonoBehaviour
         }
 
         public void Proc() {
-            while (parent.runThreads) {
+            while (parent.runThreads && parent.socket.Connected) {
                 while (!parent.stream.DataAvailable && parent.runThreads) {}
 
                 byte[] buffer = new byte[1];
@@ -131,7 +131,7 @@ public class NetworkClient : MonoBehaviour
                     if (clients[1] == parent.clientID) {
                         // TODO The local player was killed
                         parent.stream.Close();
-                        parent.gameObject.SetActive(false);
+                        parent.alive = false;
                     }
                     else {
                         foreach (NetworkedPlayer player in parent.players) {
@@ -159,7 +159,8 @@ public class NetworkClient : MonoBehaviour
     private bool runThreads = true;
     public NetworkedPlayer[] players = new NetworkedPlayer[6];
     public WorldGenerator worldGenerator;
-    private bool worldGenerated = false;    
+    private bool worldGenerated = false;
+    public bool alive = true;
 
     void Start() {
         clientID = (byte) UnityEngine.Random.Range(0, 255);
@@ -186,7 +187,7 @@ public class NetworkClient : MonoBehaviour
             }
         }
 
-        if (connected) {
+        if (connected && alive) {
             // Start sending frame updates
             byte[] update = new byte[] {
                 NetworkServer.PACKETTYPE_FRAME_UPDATE,
@@ -205,6 +206,9 @@ public class NetworkClient : MonoBehaviour
             Buffer.BlockCopy(z, 0, update, 10, 4);
 
             stream.Write(update, 0, update.Length);
+        }
+        else if (!alive) {
+            gameObject.SetActive(false);
         }
     }
 
