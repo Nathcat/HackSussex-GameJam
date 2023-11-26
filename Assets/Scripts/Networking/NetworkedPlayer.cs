@@ -12,15 +12,15 @@ public class NetworkedPlayer : MonoBehaviour
     public void Update() {
         if (allowSet) {
             transform.position = position;
-        }
 
-        if (client.hunterID == clientID) {
-            gameObject.transform.GetChild(0).gameObject.SetActive(true);
-            gameObject.GetComponent<ParticleSystem>().Play();
-        }
-        else {
-            gameObject.transform.GetChild(0).gameObject.SetActive(false);
-            gameObject.GetComponent<ParticleSystem>().Stop();
+            if (client.hunterID == clientID) {
+                gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                gameObject.GetComponent<ParticleSystem>().Play();
+            }
+            else {
+                gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                gameObject.GetComponent<ParticleSystem>().Stop();
+            }
         }
     }
 
