@@ -73,6 +73,7 @@ public class tyler_says : MonoBehaviour
             {
                 eventsystem.GetComponent<task_manager>().tasks += 1;
                 host.gameObject.SetActive(false);
+                colours.Clear();
             }
             if (index == colours.Count) 
             {
@@ -95,6 +96,7 @@ public class tyler_says : MonoBehaviour
             {
                 eventsystem.GetComponent<task_manager>().tasks += 1;
                 host.gameObject.SetActive(false);
+                colours.Clear();
             }
             index++;
             if (index == colours.Count)
@@ -120,6 +122,7 @@ public class tyler_says : MonoBehaviour
             {
                 eventsystem.GetComponent<task_manager>().tasks += 1;
                 host.gameObject.SetActive(false);
+                colours.Clear();
             }
             index++;
             if (index == colours.Count)
@@ -145,6 +148,7 @@ public class tyler_says : MonoBehaviour
             {
                 eventsystem.GetComponent<task_manager>().tasks += 1;
                 host.gameObject.SetActive(false);
+                colours.Clear();
             }
             index++;
             if (index == colours.Count)
@@ -171,6 +175,7 @@ public class tyler_says : MonoBehaviour
             {
                 eventsystem.GetComponent<task_manager>().tasks += 1;
                 host.gameObject.SetActive(false);
+                colours.Clear();
             }
             index++;
             if (index == colours.Count)

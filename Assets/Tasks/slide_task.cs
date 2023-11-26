@@ -22,9 +22,9 @@ public class slide_task : MonoBehaviour
     public GameObject host;
     
     // Start is called before the first frame update
-    void Start()
+    public void load()
     {
-        host.gameObject.SetActive(false);
+
         textbox.text = "Press the button";
     }
 
