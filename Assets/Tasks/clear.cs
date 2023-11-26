@@ -13,7 +13,7 @@ public class clear : MonoBehaviour
         eventsystem.GetComponent<task_manager>().tasks += 1;
         host.gameObject.SetActive(false);
     }
-    private void Start()
+    private void load()
     {
         host.gameObject.SetActive(false);
     }

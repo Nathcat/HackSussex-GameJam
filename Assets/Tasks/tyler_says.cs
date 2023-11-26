@@ -16,7 +16,7 @@ public class tyler_says : MonoBehaviour
     public int index = 0;
     public GameObject eventsystem;
     public GameObject host;
-    private void Start()
+    private void load()
     {
         host.gameObject.SetActive(false);
     }
