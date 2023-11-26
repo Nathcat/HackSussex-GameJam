@@ -14,9 +14,8 @@ public class wires : MonoBehaviour
     public GameObject eventsystem;
     public GameObject host;
     public string current = "";
-    void Start()
+    public void load()
     {
-        host.gameObject.SetActive(false);
         redwire.gameObject.SetActive(false);
         bluewire.gameObject.SetActive(false);
         greenwire.gameObject.SetActive(false);
@@ -42,8 +41,9 @@ public class wires : MonoBehaviour
     {
         if (current == "blue") { 
             bluewire.gameObject.SetActive(true);
+            welded++;
         }
-        welded++;
+        
         if (welded == 4)
         {
             eventsystem.GetComponent<task_manager>().tasks += 1;
@@ -55,8 +55,9 @@ public class wires : MonoBehaviour
         if (current == "green")
         {
             greenwire.gameObject.SetActive(true);
+            welded++;
         }
-        welded++;
+
         if (welded == 4)
         {
             eventsystem.GetComponent<task_manager>().tasks += 1;
@@ -68,8 +69,9 @@ public class wires : MonoBehaviour
         if (current == "red")
         {
             redwire.gameObject.SetActive(true);
+            welded++;
         }
-        welded++;
+
         if (welded == 4)
         {
             eventsystem.GetComponent<task_manager>().tasks += 1;
@@ -81,8 +83,9 @@ public class wires : MonoBehaviour
         if (current == "yellow")
         {
             yellowwire.gameObject.SetActive(true);
+            welded++;
         }
-        welded++;
+
         if (welded == 4)
         {
             eventsystem.GetComponent<task_manager>().tasks += 1;

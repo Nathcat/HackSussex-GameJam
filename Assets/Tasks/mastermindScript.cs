@@ -16,8 +16,11 @@ public class mastermindScript : MonoBehaviour
     public Image ind2;
     public Image ind3;
     public Image ind4;
-    
-    
+
+    public GameObject eventsystem;
+    public GameObject host;
+    public int wins;
+
     private int ones = 0;
     private int zeros = 0;
     private int num1;
@@ -42,7 +45,7 @@ public class mastermindScript : MonoBehaviour
     
     
     // Start is called before the first frame update
-    void Start()
+    public void load()
     {
         //gameObject.SetActive(false);
         code = Random.Range(0, 16);
@@ -156,8 +159,15 @@ public class mastermindScript : MonoBehaviour
         {
             zeros++;
         }
+        if (digit1.text == (code / 8).ToString() && digit2.text == ((code % 8) / 4).ToString() && digit3.text == ((code % 4) / 4).ToString() && digit4.text == ((code % 2) / 4).ToString())
+        {
+            eventsystem.GetComponent<task_manager>().tasks += 1;
+            host.gameObject.SetActive(false);
+            code = Random.Range(0, 16);
 
-        if(digit1.text == (code / 8).ToString())
+        }
+
+        if (digit1.text == (code / 8).ToString())
         {
             ind1.color = new Color32(11,204,40,100);
             Debug.Log("w");
@@ -223,7 +233,6 @@ public class mastermindScript : MonoBehaviour
         if(digit4.text == ((code % 2) / 1).ToString())
         {
             ind4.color = new Color32(11,204,40,100);
-            Debug.Log("w");
             if(digit4.text == "0")
             {
                 zeros--;
