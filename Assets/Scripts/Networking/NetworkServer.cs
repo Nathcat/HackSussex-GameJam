@@ -160,8 +160,8 @@ public class NetworkServer : MonoBehaviour
     private bool runThreads = true;
     public doorScript[] doors;
 
-    void Start() {
-        ClientsJoinThread thr = new ClientsJoinThread(this, 1);
+    public void StartServer(int worldSeed) {
+        ClientsJoinThread thr = new ClientsJoinThread(this, worldSeed);
         Thread t = new Thread(new ThreadStart(thr.Proc));
         t.IsBackground = true;
         t.Start();
