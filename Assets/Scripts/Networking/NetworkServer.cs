@@ -138,7 +138,7 @@ public class NetworkServer : MonoBehaviour
                         BitConverter.ToSingle(z)
                     );
 
-                    parent.playerPositions[(int) update[1]] = pos;
+                    parent.playerPositions[(int) update[1] - 1] = pos;
 
                     // Create the door packet
                     byte[] door_packet = new byte[parent.worldGen.doors.Length + 5];
