@@ -132,7 +132,7 @@ public class NetworkServer : MonoBehaviour
                     Buffer.BlockCopy(update, 2, x, 0, 4);
                     Buffer.BlockCopy(update, 6, y, 0, 4);
                     Buffer.BlockCopy(update, 10, z, 0, 4);
-                    Vector2 pos = new Vector2(
+                    Vector2 pos = new Vector3(
                         BitConverter.ToSingle(x),
                         BitConverter.ToSingle(y),
                         BitConverter.ToSingle(z)
