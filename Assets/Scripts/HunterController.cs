@@ -7,6 +7,12 @@ public class HunterController : MonoBehaviour
     public float killRadius = 5f;
     public bool allowKill = true;
 
+    public void Start() {
+        GameObject[] hunterSpawns = GameObject.FindObjectsWithTag("hunterspawn");
+        GameObject spawn = hunterSpawns[Random.Range(0, hunterSpawns.Length)];
+        transform.position = spawn.transform.position;
+    }
+
     public void Update() {
         if (Input.GetMouseButtonDown(0) && allowKill) {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, killRadius);
