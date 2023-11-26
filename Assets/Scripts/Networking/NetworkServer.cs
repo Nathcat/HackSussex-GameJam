@@ -157,6 +157,18 @@ public class NetworkServer : MonoBehaviour
                         parent.streams[a].Write(buffer);
                     }
                 }
+                else if (header[0] == PACKETTYPE_TASK_COMPLETE) {
+                    byte[] buffer = new byte[2];
+                    buffer[0] = header[0];
+                    parent.streams[i].Read(buffer, 1, 1);
+
+                    for (int a = 0; a < 6; a++) {
+                        if (a == i) continue;
+                        if (parent.clients[a] == null) break;
+
+                        parent.streams[a].Write(buffer);
+                    }
+                }
             }
         }
     }
@@ -169,6 +181,7 @@ public class NetworkServer : MonoBehaviour
     public const byte PACKETTYPE_CLIENTSAWARE = 3;
     public const byte PACKETTYPE_DOORUPDATE = 4;
     public const byte PACKETTYPE_KILL = 5;
+    public const byte PACKETTYPE_TASK_COMPLETE = 6;
 
     public int networkState = 0;
     private TcpListener server;

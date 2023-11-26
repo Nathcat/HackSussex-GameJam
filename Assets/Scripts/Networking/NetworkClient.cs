@@ -145,6 +145,15 @@ public class NetworkClient : MonoBehaviour
                         }
                     }
                 }
+                else if (packet_type == NetworkServer.PACKETTYPE_TASK_COMPLETE) {
+                    byte[] buffer = new byte[1];
+                    parent.stream.Read(buffer);
+                    byte task_id = buffer[0];
+
+                    foreach (Task task in parent.tasks) {
+                        task.Complete = true;
+                    }                    
+                }
             }
         }
     }
@@ -163,6 +172,7 @@ public class NetworkClient : MonoBehaviour
     private bool worldGenerated = false;
     public bool alive = true;
     public byte hunterID;
+    public Task[] tasks;
 
     void Start() {
         clientID = (byte) UnityEngine.Random.Range(0, 255);
@@ -227,6 +237,13 @@ public class NetworkClient : MonoBehaviour
         };
 
         stream.Write(packet);
+    }
+
+    public void SendTaskCompletePacket(byte id) {
+        byte[] packet = new byte[] {
+            NetworkServer.PACKETTYPE_TASK_COMPLETE,
+            id
+        };
     }
 
     void OnApplicationQuit() {
