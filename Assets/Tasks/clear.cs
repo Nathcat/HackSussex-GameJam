@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class clear : MonoBehaviour
+public class clear : Task
 {
     // Start is called before the first frame update
     public GameObject eventsystem;
@@ -11,9 +11,10 @@ public class clear : MonoBehaviour
     public void clicking() {
 
         eventsystem.GetComponent<task_manager>().tasks += 1;
+        complete = true;
         host.gameObject.SetActive(false);
     }
-    private void Start()
+    private void load()
     {
         host.gameObject.SetActive(false);
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class tyler_says : MonoBehaviour
+public class tyler_says : Task
 {
     private List<int> colours = new List<int> ();
     public Button blue;
@@ -16,7 +16,7 @@ public class tyler_says : MonoBehaviour
     public int index = 0;
     public GameObject eventsystem;
     public GameObject host;
-    private void Start()
+    private void load()
     {
         host.gameObject.SetActive(false);
     }
@@ -72,6 +72,7 @@ public class tyler_says : MonoBehaviour
             if (index >= 4)
             {
                 eventsystem.GetComponent<task_manager>().tasks += 1;
+                complete = true;
                 host.gameObject.SetActive(false);
                 colours.Clear();
             }
@@ -95,6 +96,7 @@ public class tyler_says : MonoBehaviour
             if (index >= 4)
             {
                 eventsystem.GetComponent<task_manager>().tasks += 1;
+                complete = true;
                 host.gameObject.SetActive(false);
                 colours.Clear();
             }
@@ -121,6 +123,7 @@ public class tyler_says : MonoBehaviour
             if (index >= 4)
             {
                 eventsystem.GetComponent<task_manager>().tasks += 1;
+                complete = true;
                 host.gameObject.SetActive(false);
                 colours.Clear();
             }
@@ -147,6 +150,7 @@ public class tyler_says : MonoBehaviour
             if (index >= 4)
             {
                 eventsystem.GetComponent<task_manager>().tasks += 1;
+                complete = true;
                 host.gameObject.SetActive(false);
                 colours.Clear();
             }
@@ -174,6 +178,7 @@ public class tyler_says : MonoBehaviour
             if (index >= 4)
             {
                 eventsystem.GetComponent<task_manager>().tasks += 1;
+                complete = true;
                 host.gameObject.SetActive(false);
                 colours.Clear();
             }

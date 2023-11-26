@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 //using System.Random;
 
-public class mastermindScript : MonoBehaviour
+public class mastermindScript : Task
 {
     public TMP_Text digit1;
     public TMP_Text digit2;
@@ -162,6 +162,7 @@ public class mastermindScript : MonoBehaviour
         if (digit1.text == (code / 8).ToString() && digit2.text == ((code % 8) / 4).ToString() && digit3.text == ((code % 4) / 4).ToString() && digit4.text == ((code % 2) / 4).ToString())
         {
             eventsystem.GetComponent<task_manager>().tasks += 1;
+            complete = true;
             host.gameObject.SetActive(false);
             code = Random.Range(0, 16);
 

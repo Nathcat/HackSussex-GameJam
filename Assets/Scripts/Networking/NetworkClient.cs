@@ -77,7 +77,7 @@ public class NetworkClient : MonoBehaviour
         }
 
         public void Proc() {
-            while (parent.runThreads) {
+            while (parent.runThreads && parent.socket.Connected) {
                 while (!parent.stream.DataAvailable && parent.runThreads) {}
 
                 byte[] buffer = new byte[1];
@@ -104,7 +104,7 @@ public class NetworkClient : MonoBehaviour
                     );
 
                     for (int i = 0; i < parent.players.Length; i++) {
-                        if (parent.players[i].clientID == clientID) {
+                        if (parent.players[i] != null && parent.players[i].clientID == clientID) {
                             parent.players[i].position = position;
                         }
                     }
@@ -124,6 +124,26 @@ public class NetworkClient : MonoBehaviour
                         }
                     }
                 }
+                else if (packet_type == NetworkServer.PACKETTYPE_KILL) {
+                    byte[] clients = new byte[2];
+                    parent.stream.Read(clients);
+
+                    if (clients[1] == parent.clientID) {
+                        // TODO The local player was killed
+                        parent.stream.Close();
+                        parent.alive = false;
+                    }
+                    else {
+                        foreach (NetworkedPlayer player in parent.players) {
+                            if (player == null) continue;
+
+                            if (player.clientID == clients[1]) {
+                                Debug.Log("Client " + player.clientID + " was killed!");
+                                Destroy(player.gameObject);
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -140,7 +160,7 @@ public class NetworkClient : MonoBehaviour
     public NetworkedPlayer[] players = new NetworkedPlayer[6];
     public WorldGenerator worldGenerator;
     private bool worldGenerated = false;
-    
+    public bool alive = true;
 
     void Start() {
         clientID = (byte) UnityEngine.Random.Range(0, 255);
@@ -158,9 +178,16 @@ public class NetworkClient : MonoBehaviour
         if (!worldGenerated && worldGenSeed != 0) {
             worldGenerator.Generate(worldGenSeed);
             worldGenerated = true;
+
+            if (isHunter) {
+                gameObject.AddComponent<HunterController>();
+            }
+            else {
+                gameObject.AddComponent<SurvivorController>();
+            }
         }
 
-        if (connected) {
+        if (connected && alive) {
             // Start sending frame updates
             byte[] update = new byte[] {
                 NetworkServer.PACKETTYPE_FRAME_UPDATE,
@@ -179,8 +206,20 @@ public class NetworkClient : MonoBehaviour
             Buffer.BlockCopy(z, 0, update, 10, 4);
 
             stream.Write(update, 0, update.Length);
-            
         }
+        else if (!alive) {
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void SendKillPacket(NetworkedPlayer player) {
+        byte[] packet = new byte[] {
+            NetworkServer.PACKETTYPE_KILL,
+            clientID,
+            player.clientID
+        };
+
+        stream.Write(packet);
     }
 
     void OnApplicationQuit() {

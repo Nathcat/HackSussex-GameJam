@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public void Start() {
         int seed = Random.Range((int) 0, (int) 0x7FFFFFFF);
 
-        worldGenerator.Generate(seed);
-        networkServer.StartServer(seed);
+        if (worldGenerator != null) worldGenerator.Generate(seed);
+        if (networkServer != null) networkServer.StartServer(seed);
     }
 }

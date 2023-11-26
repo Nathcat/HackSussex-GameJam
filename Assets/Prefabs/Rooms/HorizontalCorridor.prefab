@@ -358,10 +358,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connections:
-    up: 0
-    right: 1
-    down: 0
-    left: 1
+  - directions:
+      up: 0
+      right: 1
+      down: 0
+      left: 1
+    offset: {x: 0, y: 0}
 --- !u!212 &8159883246621454461
 SpriteRenderer:
   m_ObjectHideFlags: 0
