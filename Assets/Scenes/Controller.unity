@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc2b42da0d562243afe3cea13735424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkServer: {fileID: 0}
-  worldGenerator: {fileID: 0}
+  networkServer: {fileID: 1615178503}
+  worldGenerator: {fileID: 2106692831}
 --- !u!114 &1615178503
 MonoBehaviour:
   m_ObjectHideFlags: 0
