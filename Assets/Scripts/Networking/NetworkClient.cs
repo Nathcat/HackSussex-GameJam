@@ -181,7 +181,7 @@ public class NetworkClient : MonoBehaviour
     }
     public bool alive = true;
     public byte hunterID;
-    public ArrayList tasks;
+    public ArrayList tasks = new ArrayList();
 
     void Start() {
         clientID = (byte) UnityEngine.Random.Range(0, 255);
