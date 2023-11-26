@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   networkState: 0
   clientIDs: 000000000000
-  doors: []
+  worldGen: {fileID: 2106692831}
 --- !u!4 &1615178504
 Transform:
   m_ObjectHideFlags: 0
@@ -235,6 +235,7 @@ MonoBehaviour:
   - {fileID: 8969819382118034159, guid: 7167a3ebef39867418ad8d3aafb1f680, type: 3}
   - {fileID: 8969819382118034159, guid: 7ed99a2ef3b937e4898eb0e35e958db6, type: 3}
   - {fileID: 8969819382118034159, guid: 61ea83038b702534b86e447056f5d7f1, type: 3}
+  doors: []
 --- !u!4 &2106692832
 Transform:
   m_ObjectHideFlags: 0

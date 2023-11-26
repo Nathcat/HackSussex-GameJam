@@ -126,12 +126,12 @@ public class NetworkServer : MonoBehaviour
                     parent.streams[i].Read(update, 1, 13);
 
                     // Create the door packet
-                    byte[] door_packet = new byte[parent.doors.Length + 5];
+                    byte[] door_packet = new byte[parent.worldGen.doors.Length + 5];
                     door_packet[0] = PACKETTYPE_DOORUPDATE;
-                    byte[] length_buffer = BitConverter.GetBytes(parent.doors.Length);
+                    byte[] length_buffer = BitConverter.GetBytes(parent.worldGen.doors.Length);
                     Buffer.BlockCopy(length_buffer, 0, door_packet, 1, 4);
-                    for (int i = 0; i < parent.doors.Length; i++) {
-                        door_packet[i+5] = parent.doors[i].id;
+                    for (int i = 0; i < parent.worldGen.doors.Length; i++) {
+                        door_packet[i+5] = parent.worldGen.doors[i].id;
                     }
 
                     // Forward to other clients 
@@ -190,7 +190,7 @@ public class NetworkServer : MonoBehaviour
     public NetworkStream[] streams = new NetworkStream[6];
     private int pClientsEnd = 0;
     private bool runThreads = true;
-    public doorScript[] doors;
+    public WorldGenerator worldGen;
 
     public void StartServer(int worldSeed) {
         ClientsJoinThread thr = new ClientsJoinThread(this, worldSeed);

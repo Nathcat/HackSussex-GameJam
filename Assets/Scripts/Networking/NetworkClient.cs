@@ -118,10 +118,9 @@ public class NetworkClient : MonoBehaviour
                     for (int i = 0; i < length; i++) {
                         byte[] door_buffer = new byte[1];
                         parent.stream.Read(door_buffer);
-                        GameObject[] doors = GameObject.FindGameObjectsWithTag("door");
 
-                        foreach (GameObject door in doors) {
-                            if (door.GetComponent<doorScript>().checkId(door_buffer[0])) door.GetComponent<doorScript>().id = door_buffer[0];
+                        foreach (doorScript door in parent.worldGenerator.doors) {
+                            if (door.checkId(door_buffer[0])) door.id = door_buffer[0];
                         }
                     }
                 }

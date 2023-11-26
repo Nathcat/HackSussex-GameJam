@@ -53,8 +53,7 @@ public class WorldGenerator : MonoBehaviour
     {
         int count = 128;
         doors = GetComponentsInChildren<doorScript>();
-        GameObject obj = GameObject.Find("GameManager");
-        if (obj != null) obj.GetComponent<NetworkServer>().doors = doors;
+        
         foreach (doorScript door in doors)
         {
             door.id = (byte)count;
