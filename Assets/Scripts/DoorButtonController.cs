@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DoorButtonController : MonoBehaviour
 {
@@ -14,11 +13,11 @@ public class DoorButtonController : MonoBehaviour
     [SerializeField]
     private Sprite openSprite;
 
-    private SpriteRenderer spriteRenderer;
+    private Image imageRenderer;
 
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        imageRenderer = GetComponent<Image>();
     }
 
     void Update()
@@ -32,12 +31,12 @@ public class DoorButtonController : MonoBehaviour
         if (Open)
         {
             Door.id = (byte)(Door.id | 0x80);
-            spriteRenderer.sprite = closeSprite;
+            imageRenderer.sprite = openSprite;
         }
         else
         {
             Door.id = (byte)(Door.id & 0x7F);
-            spriteRenderer.sprite = openSprite;
+            imageRenderer.sprite = closeSprite;
         }
     }
 }

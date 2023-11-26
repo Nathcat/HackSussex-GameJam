@@ -29,12 +29,19 @@ public class PingController : MonoBehaviour
         }
     }
 
-    public void GenerateDoorButtons()
+    public void PostWorldGen()
     {
         foreach (doorScript door in FindObjectsByType<doorScript>(FindObjectsSortMode.None))
         {
             GameObject button = Instantiate(doorPrefab, transform);
             button.GetComponent<DoorButtonController>().Door = door;
+        }
+    
+        foreach (TaskLocation task in FindObjectsByType<TaskLocation>(FindObjectsSortMode.None))
+        {
+            if (task.GetTask() == null) continue;
+            GameObject ping = Instantiate(taskPrefab, transform);
+            ping.transform.position = Camera.main.WorldToScreenPoint(task.transform.position);
         }
     }
 }

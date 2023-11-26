@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
         if (worldGenerator != null)
         {
             worldGenerator.Generate(seed);
-            FindFirstObjectByType<PingController>().GenerateDoorButtons();
+            FindFirstObjectByType<PingController>().PostWorldGen();
         }
     }
 }
