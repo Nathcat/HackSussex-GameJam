@@ -177,7 +177,9 @@ public class NetworkClient : MonoBehaviour
 
     void Start() {
         clientID = (byte) UnityEngine.Random.Range(0, 255);
+    }
 
+    public void StartClient() {
         ClientSendThread thr = new ClientSendThread(this);
         Thread t = new Thread(new ThreadStart(thr.Proc));
         t.IsBackground = true;
