@@ -41,7 +41,7 @@ public class PingController : MonoBehaviour
         {
             if (task.GetTask() == null) continue;
             GameObject ping = Instantiate(taskPrefab, transform);
-            ping.transform.position = Camera.main.WorldToScreenPoint(task.transform.position);
+            ping.GetComponent<TaskPing>().task = task.gameObject;
         }
     }
 }
