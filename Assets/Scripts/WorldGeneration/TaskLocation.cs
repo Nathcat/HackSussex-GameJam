@@ -14,7 +14,8 @@ public class TaskLocation : MonoBehaviour
 
     public void SetupTask(int id)
     {
-        task = tasks[Random.Range(0, tasks.Length)].GetComponent<Task>();
+        GameObject decision = tasks[Random.Range(0, tasks.Length)];
+        task = Instantiate(decision).GetComponent<Task>();
         task.id = (byte) id;
     }
 
