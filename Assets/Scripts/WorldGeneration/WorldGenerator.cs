@@ -43,6 +43,19 @@ public class WorldGenerator : MonoBehaviour
 
         // Pick task locations
         PickTaskLocations();
+        DelegateDoorIds();
+    }
+
+    private void DelegateDoorIds()
+    {
+        int count = 128;
+        doorScript[] doors = GetComponentsInChildren<doorScript>();
+        GetComponent<NetworkServer>().doors = doors;
+        foreach (doorScript door in doors)
+        {
+            door.id = (byte)count;
+            count++;
+        }
     }
 
     public void PickTaskLocations()
