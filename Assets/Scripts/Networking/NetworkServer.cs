@@ -125,6 +125,21 @@ public class NetworkServer : MonoBehaviour
                     update[0] = header[0];
                     parent.streams[i].Read(update, 1, 13);
 
+                    byte[] x = new byte[4];
+                    byte[] y = new byte[4];
+                    byte[] z = new byte[4];
+
+                    Buffer.BlockCopy(update, 2, x, 0, 4);
+                    Buffer.BlockCopy(update, 6, y, 0, 4);
+                    Buffer.BlockCopy(update, 10, z, 0, 4);
+                    Vector2 pos = new Vector2(
+                        BitConverter.ToSingle(x),
+                        BitConverter.ToSingle(y),
+                        BitConverter.ToSingle(z)
+                    );
+
+                    parent.playerPositions[(int) update[1]] = pos;
+
                     // Create the door packet
                     byte[] door_packet = new byte[parent.worldGen.doors.Length + 5];
                     door_packet[0] = PACKETTYPE_DOORUPDATE;
@@ -191,6 +206,7 @@ public class NetworkServer : MonoBehaviour
     private int pClientsEnd = 0;
     private bool runThreads = true;
     public WorldGenerator worldGen;
+    public Vector2[] playerPositions = new Vector2[6];
 
     public void StartServer(int worldSeed) {
         ClientsJoinThread thr = new ClientsJoinThread(this, worldSeed);
