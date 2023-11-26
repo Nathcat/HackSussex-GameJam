@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class WorldGenerator : MonoBehaviour
@@ -8,68 +7,77 @@ public class WorldGenerator : MonoBehaviour
     private int WorldSize = 16;
 
     [SerializeField]
-    private GameObject[] rooms;
+    private GameObject SpawnRoom;
 
-    private RoomConstruct[] roomConstructs;
+    [SerializeField]
+    private GameObject[] Rooms;
 
-    Directions[,] connectionsMap;
-    bool[,] existenceMap;
+    private RoomConstruct[] RoomConstructs;
+
+    Directions[,] ConnectionsMap;
+    bool[,] ExistenceMap;
 
     public void Generate(int seed)
     {
         // Cache the room constructs of room prefabs
-        roomConstructs = new RoomConstruct[rooms.Length];
-        for (int i = 0; i < rooms.Length; i++) roomConstructs[i] = rooms[i].GetComponent<RoomConstruct>();
+        RoomConstructs = new RoomConstruct[Rooms.Length];
+        for (int i = 0; i < Rooms.Length; i++) RoomConstructs[i] = Rooms[i].GetComponent<RoomConstruct>();
 
-        connectionsMap = new Directions[WorldSize, WorldSize];
-        existenceMap = new bool[WorldSize, WorldSize];
+        ConnectionsMap = new Directions[WorldSize, WorldSize];
+        ExistenceMap = new bool[WorldSize, WorldSize];
         Random.InitState(seed);
 
         // Begin facing up
         int half = WorldSize / 2;
-        GenerateRoomAt(half, half);
+        RoomConstruct spawnConstruct = SpawnRoom.GetComponent<RoomConstruct>();
+        GenerateRoomAt(spawnConstruct, half, half);
     }
 
-    private void GenerateConnectionsAt(int x, int y)
-    {
-        Directions current = connectionsMap[x, y];
-        if (current.up && !ExistsAt(x, y + 1)) GenerateRoomAt(x, y + 1);
-        if (current.right && !ExistsAt(x + 1, y)) GenerateRoomAt(x + 1, y);
-        if (current.down && !ExistsAt(x, y - 1)) GenerateRoomAt(x, y - 1);
-        if (current.left && !ExistsAt(x - 1, y)) GenerateRoomAt(x - 1, y);
-    }
-
-    private void GenerateRoomAt(int x, int y)
+    private void GenerateRandomRoomAt(int x, int y)
     {
         // Pick room
         RoomConstruct[] possibilities = ComputePossibleRooms(x, y);
         RoomConstruct decision = possibilities[Random.Range(0, possibilities.Length)];
 
+        GenerateRoomAt(decision, x, y);
+    }
+
+    private void GenerateRoomAt(RoomConstruct room, int x, int y)
+    {
         // Instantiate
         Vector2 position = new(x * RoomConstruct.ROOM_RADIUS * 2, y * RoomConstruct.ROOM_RADIUS * 2);
         position -= new Vector2(RoomConstruct.ROOM_RADIUS * WorldSize, RoomConstruct.ROOM_RADIUS * WorldSize);
-        Instantiate(decision.gameObject, position, Quaternion.identity, transform);
+        Instantiate(room.gameObject, position, Quaternion.identity, transform);
 
         // Write to array
-        foreach (DirectionsOffsetPair pair in decision.GetConnections())
+        foreach (DirectionsOffsetPair pair in room.GetConnections())
         {
             int rX = x + pair.offset.x;
             int rY = y + pair.offset.y;
 
             if (rX < 0 || rY < 0 || rX >= WorldSize || rY >= WorldSize) continue;
 
-            connectionsMap[rX, rY] = pair.directions;
-            existenceMap[rX, rY] = true;
-        }
+            ConnectionsMap[rX, rY] = pair.directions;
+            ExistenceMap[rX, rY] = true;
 
-        // Generate Connections
-        GenerateConnectionsAt(x, y);
+            // Generate Connections
+            GenerateConnectionsAt(rX, rY);
+        }
+    }
+
+    private void GenerateConnectionsAt(int x, int y)
+    {
+        Directions current = ConnectionsMap[x, y];
+        if (current.up && !ExistsAt(x, y + 1)) GenerateRandomRoomAt(x, y + 1);
+        if (current.right && !ExistsAt(x + 1, y)) GenerateRandomRoomAt(x + 1, y);
+        if (current.down && !ExistsAt(x, y - 1)) GenerateRandomRoomAt(x, y - 1);
+        if (current.left && !ExistsAt(x - 1, y)) GenerateRandomRoomAt(x - 1, y);
     }
 
     public RoomConstruct[] ComputePossibleRooms(int x, int y)
     {
         List<RoomConstruct> result = new();
-        foreach (RoomConstruct room in roomConstructs)
+        foreach (RoomConstruct room in RoomConstructs)
         {
             if (CanPlaceRoomAt(room, x, y)) result.Add(room);
         }
@@ -95,12 +103,12 @@ public class WorldGenerator : MonoBehaviour
 
     public Directions GetConnectionsAt(int x, int y) {
         if (x < 0 || y < 0 || x >= WorldSize || y >= WorldSize) return new Directions();
-        return connectionsMap[x, y];
+        return ConnectionsMap[x, y];
     }
 
     public bool ExistsAt(int x, int y)
     {
         if (x < 0 || y < 0 || x >= WorldSize || y >= WorldSize) return true;
-        return existenceMap[x, y];
+        return ExistenceMap[x, y];
     }
 }

@@ -441,8 +441,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WorldSize: 16
-  rooms:
+  SpawnRoom: {fileID: 8969819382118034159, guid: 46987d95aa9ff294ba95cc5bc61f771b, type: 3}
+  Rooms:
   - {fileID: 8969819382118034159, guid: f15dbedc8cf8fb04bbc40ef0de42345d, type: 3}
+  - {fileID: 8969819382118034159, guid: b9f452e730f8461448b472d67fc0cadf, type: 3}
   - {fileID: 8850469868248765760, guid: 6b31fdba4ee38fb4cb78ebb3c8b93d63, type: 3}
   - {fileID: 3606580971640830147, guid: d6f201a4a41b1044fb41821b67a24306, type: 3}
   - {fileID: 5203956177900553359, guid: b8b1370a071d77e44ab366c1453f5061, type: 3}
