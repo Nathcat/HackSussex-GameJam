@@ -9,8 +9,9 @@ public class SurvivorController : MonoBehaviour
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2.5f);
             
             foreach (Collider2D collider in colliders) {
-                Task task;
-                if ((task = collider.gameObject.GetComponent<Task>()) != null) {
+                TaskLocation taskloc;
+                if ((taskloc = collider.gameObject.GetComponent<TaskLocation>()) != null) {
+                    Task task = taskloc.GetTask();
                     if (!task.complete) {
                         task.load();
                         break;
