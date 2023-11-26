@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WorldGenerator : MonoBehaviour
 {
-    const int MIN_ROOMS = 5;
+    const int MIN_ROOMS = 10;
 
     public int NumberOfTasks = 3;
 
