@@ -24,4 +24,18 @@ public class RoomConstruct : MonoBehaviour
     }
 
     public DirectionsOffsetPair[] GetConnections() { return connections; }
+
+    public int NumberOfConnections()
+    {
+        int count = 0;
+        foreach (DirectionsOffsetPair pair in connections)
+        {
+            if (pair.directions.up) count++;
+            if (pair.directions.right) count++;
+            if (pair.directions.down) count++;
+            if (pair.directions.left) count++;
+        }
+
+        return count;
+    }
 }
