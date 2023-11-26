@@ -629,6 +629,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 1647846726896463835, guid: a3640874fcf09a745a9c43fe02fd4dfe, type: 3}
+      propertyPath: orthographic size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647846726896463835, guid: a3640874fcf09a745a9c43fe02fd4dfe, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647846726896463835, guid: a3640874fcf09a745a9c43fe02fd4dfe, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647846726896463835, guid: a3640874fcf09a745a9c43fe02fd4dfe, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4036887587919712384, guid: a3640874fcf09a745a9c43fe02fd4dfe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.6515254
