@@ -7,9 +7,9 @@ public class testPlayerScript : MonoBehaviour
 {
     
     private Rigidbody2D rigidBody;
-    private SpriteRenderer sprite;
-    
-    //[SerializeField]
+    private SpriteRenderer spriteR;
+    public Sprite[] spriteArray;
+
 
     private float moveConst = 200;
     
@@ -17,7 +17,7 @@ public class testPlayerScript : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
+        spriteR = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -28,25 +28,28 @@ public class testPlayerScript : MonoBehaviour
         {
             rigidBody.AddForce(transform.up* moveConst * Time.deltaTime);
             //Debug.Log("w");
-            sprite.flipY = false;
+            spriteR.sprite = spriteArray[2];
 
             if (Input.GetKey("a"))
             {
                 rigidBody.AddForce(transform.right* -moveConst * Time.deltaTime);
                 //Debug.Log("a");
-                sprite.flipX = true;
+                spriteR.sprite = spriteArray[0];
+                spriteR.flipX = false;
             }
             else if (Input.GetKey("d"))
             {
                 rigidBody.AddForce(transform.right* moveConst * Time.deltaTime);
                 //Debug.Log("d");
-                sprite.flipX = false;
+                spriteR.sprite = spriteArray[0];
+                spriteR.flipX = true;
             }
             else if (Input.GetKey("s"))
             {
                 rigidBody.AddForce(transform.up* -moveConst * Time.deltaTime);
                 //Debug.Log("s");
-                sprite.flipY = true;
+                spriteR.sprite = spriteArray[1];
+                //sprite.flipY = true;
             }
 
         }
@@ -55,25 +58,27 @@ public class testPlayerScript : MonoBehaviour
         {
             rigidBody.AddForce(transform.right* -moveConst * Time.deltaTime);
             //Debug.Log("a");
-            sprite.flipX = true;
+            spriteR.sprite = spriteArray[0];
+            spriteR.flipX = false;
 
             if (Input.GetKey("w"))
             {
                 rigidBody.AddForce(transform.up* moveConst * Time.deltaTime);
                 //Debug.Log("w");
-                sprite.flipY = false;
+                spriteR.sprite = spriteArray[2];
             }
             else if (Input.GetKey("d"))
             {
                 rigidBody.AddForce(transform.right* moveConst * Time.deltaTime);
                 //Debug.Log("d");
-                sprite.flipX = false;
+                spriteR.sprite = spriteArray[0];
+                spriteR.flipX = true;
             }
             else if (Input.GetKey("s"))
             {
                 rigidBody.AddForce(transform.up* -moveConst * Time.deltaTime);
                 //Debug.Log("s");
-                sprite.flipY = true;
+                spriteR.sprite = spriteArray[1];
             }
 
         }
@@ -81,50 +86,54 @@ public class testPlayerScript : MonoBehaviour
         {
             rigidBody.AddForce(transform.right* moveConst * Time.deltaTime);
             //Debug.Log("d");
-            sprite.flipX = false;
+            spriteR.sprite = spriteArray[0];
+            spriteR.flipX = true;
 
             if (Input.GetKey("w"))
             {
                 rigidBody.AddForce(transform.up* moveConst * Time.deltaTime);
                 //Debug.Log("w");
-                sprite.flipY = false;
+                spriteR.sprite = spriteArray[2];
             }
             else if (Input.GetKey("a"))
             {
                 rigidBody.AddForce(transform.right* -moveConst * Time.deltaTime);
                 //Debug.Log("d");
-                sprite.flipX = false;
+                spriteR.sprite = spriteArray[0];
+                spriteR.flipX = false;
             }
             else if (Input.GetKey("s"))
             {
                 rigidBody.AddForce(transform.up* -moveConst * Time.deltaTime);
                 //Debug.Log("s");
-                sprite.flipY = true;
+                spriteR.sprite = spriteArray[1];
             }
         }
         else if (Input.GetKey("s"))
         {
             rigidBody.AddForce(transform.up* -moveConst * Time.deltaTime);
             //Debug.Log("s");
-            sprite.flipY = true;
+            spriteR.sprite = spriteArray[1];
 
             if (Input.GetKey("w"))
             {
                 rigidBody.AddForce(transform.up* moveConst * Time.deltaTime);
                 //Debug.Log("w");
-                sprite.flipY = false;
+                spriteR.sprite = spriteArray[2];
             }
             else if (Input.GetKey("d"))
             {
                 rigidBody.AddForce(transform.right* moveConst * Time.deltaTime);
                 //Debug.Log("d");
-                sprite.flipX = false;
+                spriteR.sprite = spriteArray[0];
+                spriteR.flipX = true;
             }
             else if (Input.GetKey("a"))
             {
                 rigidBody.AddForce(transform.right* -moveConst * Time.deltaTime);
                 //Debug.Log("a");
-                sprite.flipX = true;
+                spriteR.sprite = spriteArray[0];
+                spriteR.flipX = false;
             }
         }
     }
