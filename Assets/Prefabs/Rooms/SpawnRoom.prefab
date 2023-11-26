@@ -834,13 +834,13 @@ MonoBehaviour:
   connections:
   - directions:
       up: 0
-      right: 0
-      down: 0
-      left: 0
-    offset: {x: 0, y: 0}
-  - directions:
-      up: 0
       right: 1
       down: 0
       left: 0
     offset: {x: 1, y: 0}
+  - directions:
+      up: 0
+      right: 0
+      down: 0
+      left: 0
+    offset: {x: 0, y: 0}

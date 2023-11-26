@@ -153,8 +153,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WorldSize: 16
-  rooms:
+  SpawnRoom: {fileID: 8969819382118034159, guid: 46987d95aa9ff294ba95cc5bc61f771b, type: 3}
+  Rooms:
   - {fileID: 8969819382118034159, guid: f15dbedc8cf8fb04bbc40ef0de42345d, type: 3}
+  - {fileID: 8969819382118034159, guid: b9f452e730f8461448b472d67fc0cadf, type: 3}
+  - {fileID: 8850469868248765760, guid: 6b31fdba4ee38fb4cb78ebb3c8b93d63, type: 3}
+  - {fileID: 3606580971640830147, guid: d6f201a4a41b1044fb41821b67a24306, type: 3}
+  - {fileID: 5203956177900553359, guid: b8b1370a071d77e44ab366c1453f5061, type: 3}
+  - {fileID: 496242715124253844, guid: d42e6334f80ab974094cb801fc0afa26, type: 3}
   - {fileID: 8969819382118034159, guid: f3e9764791a037f4b956eea7ee55c90d, type: 3}
   - {fileID: 8969819382118034159, guid: 4d3e1242d549d6d4694a77977aa76ca3, type: 3}
   - {fileID: 8969819382118034159, guid: 45f1823808707ce47a444b3faaa0631d, type: 3}
@@ -166,11 +172,6 @@ MonoBehaviour:
   - {fileID: 8969819382118034159, guid: 7167a3ebef39867418ad8d3aafb1f680, type: 3}
   - {fileID: 8969819382118034159, guid: 7ed99a2ef3b937e4898eb0e35e958db6, type: 3}
   - {fileID: 8969819382118034159, guid: 61ea83038b702534b86e447056f5d7f1, type: 3}
-  - {fileID: 8969819382118034159, guid: b9f452e730f8461448b472d67fc0cadf, type: 3}
-  - {fileID: 8850469868248765760, guid: 6b31fdba4ee38fb4cb78ebb3c8b93d63, type: 3}
-  - {fileID: 3606580971640830147, guid: d6f201a4a41b1044fb41821b67a24306, type: 3}
-  - {fileID: 5203956177900553359, guid: b8b1370a071d77e44ab366c1453f5061, type: 3}
-  - {fileID: 496242715124253844, guid: d42e6334f80ab974094cb801fc0afa26, type: 3}
 --- !u!4 &314633976
 Transform:
   m_ObjectHideFlags: 0
