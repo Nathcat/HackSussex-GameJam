@@ -138,6 +138,8 @@ public class NetworkClient : MonoBehaviour
     public byte[] clientIDs = new byte[6];
     private bool runThreads = true;
     public NetworkedPlayer[] players = new NetworkedPlayer[6];
+    public WorldGenerator worldGenerator;
+    private bool worldGenerated = false;
     
 
     void Start() {
@@ -152,6 +154,11 @@ public class NetworkClient : MonoBehaviour
     void Update() {
         gameObject.GetComponent<NetworkedPlayer>().clientID = clientID;
         gameObject.GetComponent<NetworkedPlayer>().allowSet = false;
+
+        if (!worldGenerated && worldGenSeed != 0) {
+            worldGenerator.Generate(worldGenSeed);
+            worldGenerated = true;
+        }
 
         if (connected) {
             // Start sending frame updates

@@ -4,7 +4,7 @@ using UnityEngine;
 public class WorldGenerator : MonoBehaviour
 {
     [SerializeField]
-    private int WorldSize = 32;
+    private int WorldSize = 16;
 
     [SerializeField]
     private GameObject[] rooms;
@@ -14,24 +14,20 @@ public class WorldGenerator : MonoBehaviour
     Directions[,] connectionsMap;
     bool[,] existenceMap;
 
-    void Start()
+    public void Generate(int seed)
     {
+        Debug.Log("Seed is " + seed);
+
         // Cache the room constructs of room prefabs
         roomConstructs = new RoomConstruct[rooms.Length];
         for (int i = 0; i < rooms.Length; i++) roomConstructs[i] = rooms[i].GetComponent<RoomConstruct>();
 
-        // Generate for testing
-        Generate(Random.seed);
-    }
-
-    public void Generate(int seed)
-    {
         connectionsMap = new Directions[WorldSize, WorldSize];
         existenceMap = new bool[WorldSize, WorldSize];
         Random.InitState(seed);
 
         // Begin facing up
-        GenerateRoomAt(16, 16);
+        GenerateRoomAt(8, 8);
     }
 
     private void GenerateConnectionsAt(int x, int y)
@@ -47,10 +43,13 @@ public class WorldGenerator : MonoBehaviour
     {
         // Pick room
         RoomConstruct[] possibilities = ComputePossibleRooms(x, y);
+        if (possibilities.Length == 0) return;
+
         RoomConstruct decision = possibilities[Random.Range(0, possibilities.Length)];
 
         // Instantiate
         Vector2 position = new(x * RoomConstruct.ROOM_RADUIS * 2, y * RoomConstruct.ROOM_RADUIS * 2);
+        position -= new Vector2(RoomConstruct.ROOM_RADUIS * WorldSize, RoomConstruct.ROOM_RADUIS * WorldSize);
         Instantiate(decision.gameObject, position, Quaternion.identity, transform);
 
         // Write to array
@@ -78,13 +77,13 @@ public class WorldGenerator : MonoBehaviour
     }
 
     public Directions GetConnectionsAt(int x, int y) {
-        if (x < 0 || y < 0 || x > WorldSize || y > WorldSize) return new Directions();
+        if (x < 0 || y < 0 || x >= WorldSize || y >= WorldSize) return new Directions();
         return connectionsMap[x, y];
     }
 
     public bool ExistsAt(int x, int y)
     {
-        if (x < 0 || y < 0 || x > WorldSize || y > WorldSize) return true;
+        if (x < 0 || y < 0 || x >= WorldSize || y >= WorldSize) return true;
         return existenceMap[x, y];
     }
 }
