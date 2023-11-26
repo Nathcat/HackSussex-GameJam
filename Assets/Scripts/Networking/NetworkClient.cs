@@ -21,18 +21,18 @@ public class NetworkClient : MonoBehaviour
 
             byte[] join_packet = new byte[] {
                 NetworkServer.PACKETTYPE_CLIENT_JOIN,
-                parent.clientID
             };
 
-            parent.stream.Write(join_packet, 0, 2);
+            parent.stream.Write(join_packet);
 
-            byte[] resp = new byte[2];
-            parent.stream.Read(resp, 0, 2);
+            byte[] resp = new byte[3];
+            parent.stream.Read(resp);
             if (resp[0] != NetworkServer.PACKETTYPE_CLIENT_JOIN) {
                 Debug.LogError("Not correct packet type!");
             }
 
-            parent.isHunter = (resp[1] & 0x1) == 1;
+            parent.clientID = resp[1];
+            parent.isHunter = (resp[2] & 0x1) == 1;
 
             // Wait for world gen packet
             resp = new byte[5];

@@ -34,25 +34,27 @@ public class NetworkServer : MonoBehaviour
                 TcpClient client = parent.server.AcceptTcpClient();
 
                 NetworkStream stream = client.GetStream();
-                byte[] join_packet = new byte[2];
-                stream.Read(join_packet, 0, 2);
+                byte[] join_packet = new byte[1];
+                stream.Read(join_packet);
 
                 if (join_packet[0] == PACKETTYPE_CLIENT_JOIN) {
                     parent.clients[parent.pClientsEnd] = client;
                     parent.clientIDs[parent.pClientsEnd] = join_packet[1];
                     parent.streams[parent.pClientsEnd] = stream;
-                    parent.pClientsEnd++;
 
                     byte[] resp = new byte[] {
                         PACKETTYPE_CLIENT_JOIN,
+                        (byte) parent.pClientsEnd,
                         0x80
                     };
 
+                    parent.pClientsEnd++;
+
                     if (parent.pClientsEnd == 1) {
-                        resp[1] |= 0x1;
+                        resp[2] |= 0x1;
                     }
 
-                    stream.Write(resp, 0, 2);
+                    stream.Write(resp);
                 }
             }
 
