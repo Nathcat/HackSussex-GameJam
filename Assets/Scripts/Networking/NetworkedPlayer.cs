@@ -64,6 +64,7 @@ public class NetworkedPlayer : MonoBehaviour
             }
             else {
                 gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                gameObject.GetComponent<SpriteRenderer>().enabled = true;
                 gameObject.GetComponent<ParticleSystem>().Stop();
             }
 

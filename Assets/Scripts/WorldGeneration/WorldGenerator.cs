@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class WorldGenerator : MonoBehaviour
 {
+    const int MIN_ROOMS = 5;
+
     [SerializeField]
     private int WorldSize = 16;
 
@@ -16,9 +18,12 @@ public class WorldGenerator : MonoBehaviour
 
     Directions[,] ConnectionsMap;
     bool[,] ExistenceMap;
+    int RoomsGenerated;
 
     public void Generate(int seed)
     {
+        RoomsGenerated = 0;
+
         // Cache the room constructs of room prefabs
         RoomConstructs = new RoomConstruct[Rooms.Length];
         for (int i = 0; i < Rooms.Length; i++) RoomConstructs[i] = Rooms[i].GetComponent<RoomConstruct>();
@@ -44,6 +49,8 @@ public class WorldGenerator : MonoBehaviour
 
     private void GenerateRoomAt(RoomConstruct room, int x, int y)
     {
+        RoomsGenerated++;
+
         // Instantiate
         Vector2 position = new(x * RoomConstruct.ROOM_RADIUS * 2, y * RoomConstruct.ROOM_RADIUS * 2);
         position -= new Vector2(RoomConstruct.ROOM_RADIUS * WorldSize, RoomConstruct.ROOM_RADIUS * WorldSize);
@@ -79,6 +86,8 @@ public class WorldGenerator : MonoBehaviour
         List<RoomConstruct> result = new();
         foreach (RoomConstruct room in RoomConstructs)
         {
+            // Ensure is not a dead-end if we haven't generated more than 10 rooms
+            if (RoomsGenerated < MIN_ROOMS && room.NumberOfConnections() < 2) continue;
             if (CanPlaceRoomAt(room, x, y)) result.Add(room);
         }
 
