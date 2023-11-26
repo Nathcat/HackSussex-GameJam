@@ -49,11 +49,10 @@ public class WorldGenerator : MonoBehaviour
     private void DelegateDoorIds()
     {
         GameObject obj = GameObject.Find("GameManager");
-        if (obj == null) return;
 
         int count = 128;
         doorScript[] doors = GetComponentsInChildren<doorScript>();
-        obj.GetComponent<NetworkServer>().doors = doors;
+        if (obj != null) obj.GetComponent<NetworkServer>().doors = doors;
         foreach (doorScript door in doors)
         {
             door.id = (byte)count;
