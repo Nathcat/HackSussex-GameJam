@@ -25,6 +25,7 @@ public class WorldGenerator : MonoBehaviour
 
     public void Generate(int seed)
     {
+        Debug.Log("World gen called");
         RoomsGenerated = 0;
 
         // Cache the room constructs of room prefabs

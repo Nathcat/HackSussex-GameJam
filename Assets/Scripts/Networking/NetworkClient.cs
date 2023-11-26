@@ -151,7 +151,9 @@ public class NetworkClient : MonoBehaviour
                     byte task_id = buffer[0];
 
                     for (int i = 0; i < parent.tasks.Count; i++) {
-                        ((Task) parent.tasks[i]).Complete = true;
+                        if (task_id == ((Task) parent.tasks[i]).id) {
+                            ((Task) parent.tasks[i]).Complete = true;
+                        }
                     }                    
                 }
             }
@@ -200,6 +202,7 @@ public class NetworkClient : MonoBehaviour
             else {
                 gameObject.AddComponent<SurvivorController>();
                 gameObject.transform.GetChild(1).gameObject.SetActive(false);
+                gameObject.GetComponent<SpriteRenderer>().enabled = true;
                 gameObject.GetComponent<ParticleSystem>().Stop();
             }
         }
@@ -244,6 +247,8 @@ public class NetworkClient : MonoBehaviour
             NetworkServer.PACKETTYPE_TASK_COMPLETE,
             id
         };
+
+        stream.Write(packet);
     }
 
     void OnApplicationQuit() {
