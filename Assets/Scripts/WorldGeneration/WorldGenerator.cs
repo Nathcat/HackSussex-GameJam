@@ -15,11 +15,6 @@ public class WorldGenerator : MonoBehaviour
     Directions[,] connectionsMap;
     bool[,] existenceMap;
 
-    private void Start()
-    {
-        Generate(42);
-    }
-
     public void Generate(int seed)
     {
         // Cache the room constructs of room prefabs
