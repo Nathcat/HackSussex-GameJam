@@ -761,7 +761,7 @@ MonoBehaviour:
   - {fileID: 1554396204}
   - {fileID: 2004730659}
   doorPrefab: {fileID: 9207470782379888521, guid: 927c7e3c9e7649b41bc52d3b8254fe69, type: 3}
-  taskPrefab: {fileID: 0}
+  taskPrefab: {fileID: 2122948180941892286, guid: ed6f5c26534072841ab54b26f7cc689e, type: 3}
 --- !u!1 &775740276
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ public class TaskLocation : MonoBehaviour
     [SerializeField]
     private GameObject[] tasks;
 
-    private Task task;
+    private Task task = null;
 
     private void OnDrawGizmos()
     {
