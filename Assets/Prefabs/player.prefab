@@ -54,6 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e65af024d72c94691a3e4807a274c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteArray: []
 --- !u!212 &5411545314115995001
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -185,7 +186,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1191312318017182782}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5e19dd605b3b8d4d8830e7da41d8953, type: 3}
   m_Name: 
@@ -193,7 +194,7 @@ MonoBehaviour:
   clientID: 0
   position: {x: 0, y: 0, z: 0}
   allowSet: 0
-  client: {fileID: 0}
+  client: {fileID: 5182631374610920801}
 --- !u!114 &5182631374610920801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,7 +202,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1191312318017182782}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f8c633e18dbc65458d8ffd0d383aae7, type: 3}
   m_Name: 
@@ -221,6 +222,7 @@ MonoBehaviour:
   - {fileID: 0}
   worldGenerator: {fileID: 0}
   alive: 1
+  hunterID: 0
 --- !u!114 &4940099935213408126
 MonoBehaviour:
   m_ObjectHideFlags: 0
