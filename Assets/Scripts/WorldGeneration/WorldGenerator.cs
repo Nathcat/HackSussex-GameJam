@@ -4,7 +4,7 @@ using UnityEngine;
 public class WorldGenerator : MonoBehaviour
 {
     [SerializeField]
-    private int WorldSize = 32;
+    private int WorldSize = 16;
 
     [SerializeField]
     private GameObject[] rooms;
@@ -31,7 +31,7 @@ public class WorldGenerator : MonoBehaviour
         Random.InitState(seed);
 
         // Begin facing up
-        GenerateRoomAt(16, 16);
+        GenerateRoomAt(8, 8);
     }
 
     private void GenerateConnectionsAt(int x, int y)
@@ -47,6 +47,8 @@ public class WorldGenerator : MonoBehaviour
     {
         // Pick room
         RoomConstruct[] possibilities = ComputePossibleRooms(x, y);
+        if (possibilities.Length == 0) return;
+
         RoomConstruct decision = possibilities[Random.Range(0, possibilities.Length)];
 
         // Instantiate
@@ -78,13 +80,13 @@ public class WorldGenerator : MonoBehaviour
     }
 
     public Directions GetConnectionsAt(int x, int y) {
-        if (x < 0 || y < 0 || x > WorldSize || y > WorldSize) return new Directions();
+        if (x < 0 || y < 0 || x >= WorldSize || y >= WorldSize) return new Directions();
         return connectionsMap[x, y];
     }
 
     public bool ExistsAt(int x, int y)
     {
-        if (x < 0 || y < 0 || x > WorldSize || y > WorldSize) return true;
+        if (x < 0 || y < 0 || x >= WorldSize || y >= WorldSize) return true;
         return existenceMap[x, y];
     }
 }
