@@ -50,12 +50,15 @@ public class WorldGenerator : MonoBehaviour
         RoomConstruct decision = possibilities[Random.Range(0, possibilities.Length)];
 
         // Instantiate
-        Vector2 position = new(x * RoomConstruct.ROOM_RADUIS * 2, y * RoomConstruct.ROOM_RADUIS * 2);
+        Vector2 position = new(x * RoomConstruct.ROOM_RADIUS * 2, y * RoomConstruct.ROOM_RADIUS * 2);
         Instantiate(decision.gameObject, position, Quaternion.identity, transform);
 
         // Write to array
-        connectionsMap[x, y] = decision.GetConnections();
-        existenceMap[x, y] = true;
+        foreach (DirectionsOffsetPair pair in decision.GetConnections())
+        {
+            connectionsMap[x + pair.offset.x, y + pair.offset.y] = pair.directions;
+            existenceMap[x + pair.offset.x, y + pair.offset.y] = true;
+        }
 
         // Generate Connections
         GenerateConnectionsAt(x, y);
@@ -66,15 +69,26 @@ public class WorldGenerator : MonoBehaviour
         List<RoomConstruct> result = new();
         foreach (RoomConstruct room in roomConstructs)
         {
-            Directions connections = room.GetConnections();
-            if (ExistsAt(x, y + 1) && GetConnectionsAt(x, y + 1).down != connections.up) continue;
-            if (ExistsAt(x + 1, y) && GetConnectionsAt(x + 1, y).left != connections.right) continue;
-            if (ExistsAt(x, y - 1) && GetConnectionsAt(x, y - 1).up != connections.down) continue;
-            if (ExistsAt(x - 1, y) && GetConnectionsAt(x - 1, y).right != connections.left) continue;
-            result.Add(room);
+            if (CanPlaceRoomAt(room, x, y)) result.Add(room);
         }
 
         return result.ToArray();
+    }
+
+    public bool CanPlaceRoomAt(RoomConstruct room, int x, int y)
+    {
+        foreach (DirectionsOffsetPair pair in room.GetConnections())
+        {
+            Directions conns = pair.directions;
+            int rX = x + pair.offset.x;
+            int rY = y + pair.offset.y;
+
+            if (ExistsAt(rX, rY + 1) && GetConnectionsAt(rX, rY + 1).down != conns.up) return false;
+            if (ExistsAt(rX + 1, rY) && GetConnectionsAt(rX + 1, rY).left != conns.right) return false;
+            if (ExistsAt(rX, rY - 1) && GetConnectionsAt(rX, rY - 1).up != conns.down) return false;
+            if (ExistsAt(rX - 1, rY) && GetConnectionsAt(rX - 1, rY).right != conns.left) return false;
+        }
+        return true;
     }
 
     public Directions GetConnectionsAt(int x, int y) {
