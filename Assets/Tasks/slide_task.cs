@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class slide_task : MonoBehaviour
+public class slide_task : Task
 {
     public TMP_Text textbox;
     public Slider slide;
@@ -44,6 +44,7 @@ public class slide_task : MonoBehaviour
                 {
                     IsMoving = false;
                     eventsystem.GetComponent<task_manager>().tasks += 1;
+                    complete = true;
                     host.gameObject.SetActive(false);
                 }
                 else

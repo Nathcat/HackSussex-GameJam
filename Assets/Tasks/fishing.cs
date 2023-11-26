@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class fishing : MonoBehaviour
+public class fishing : Task
 {
     // Start is called before the first frame update
     public TMP_Text text;
@@ -60,6 +60,7 @@ public class fishing : MonoBehaviour
             if (slide.value >= 1)
             {
                 eventsystem.GetComponent<task_manager>().tasks += 1;
+                complete = true;
                 host.gameObject.SetActive(false);
             }
         }
