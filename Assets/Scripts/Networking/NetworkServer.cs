@@ -115,29 +115,45 @@ public class NetworkServer : MonoBehaviour
 
         public void Proc() {
             while (parent.networkState == STATE_PLAYING && parent.runThreads) {
-                byte[] update = new byte[14];
-                parent.streams[i].Read(update, 0, update.Length);
+                byte[] header = new byte[1];
+                parent.streams[i].Read(header);
 
-                if (update[0] != PACKETTYPE_FRAME_UPDATE) continue;
-    
-                // Create the door packet
-                byte[] door_packet = new byte[parent.doors.Length + 5];
-                door_packet[0] = PACKETTYPE_DOORUPDATE;
-                byte[] length_buffer = BitConverter.GetBytes(parent.doors.Length);
-                Buffer.BlockCopy(length_buffer, 0, door_packet, 1, 4);
-                for (int i = 0; i < parent.doors.Length; i++) {
-                    door_packet[i+5] = parent.doors[i].GetComponent<doorScript>().id;
+                if (header[0] == PACKETTYPE_FRAME_UPDATE) {
+                    byte[] update = new byte[14];
+                    update[0] = header[0];
+                    parent.streams[i].Read(update, 1, 13);
+
+                    // Create the door packet
+                    byte[] door_packet = new byte[parent.doors.Length + 5];
+                    door_packet[0] = PACKETTYPE_DOORUPDATE;
+                    byte[] length_buffer = BitConverter.GetBytes(parent.doors.Length);
+                    Buffer.BlockCopy(length_buffer, 0, door_packet, 1, 4);
+                    for (int i = 0; i < parent.doors.Length; i++) {
+                        door_packet[i+5] = parent.doors[i].GetComponent<doorScript>().id;
+                    }
+
+                    // Forward to other clients 
+                    for (int a = 0; a < 6; a++) {
+                        if (a == i) continue;
+                        if (parent.clients[a] == null) break;
+
+                        Debug.Log("Server: Position from " + parent.clientIDs[i] + " being forwarded to " + parent.clientIDs[a]);
+
+                        parent.streams[a].Write(update, 0, 14);
+                        parent.streams[a].Write(door_packet);
+                    }
                 }
+                else if (header[0] == PACKETTYPE_KILL) {
+                    byte[] buffer = new byte[3];
+                    buffer[0] = PACKETTYPE_KILL;
+                    parent.streams[i].Read(buffer, 1, 2);
 
-                // Forward to other clients 
-                for (int a = 0; a < 6; a++) {
-                    if (a == i) continue;
-                    if (parent.clients[a] == null) break;
+                    for (int a = 0; a < 6; a++) {
+                        if (a == i) continue;
+                        if (parent.clients[a] == null) break;
 
-                    Debug.Log("Server: Position from " + parent.clientIDs[i] + " being forwarded to " + parent.clientIDs[a]);
-
-                    parent.streams[a].Write(update, 0, 14);
-                    parent.streams[a].Write(door_packet);
+                        parent.streams[a].Write(buffer);
+                    }
                 }
             }
         }
@@ -150,6 +166,7 @@ public class NetworkServer : MonoBehaviour
     public const byte PACKETTYPE_WORLDGEN = 2;
     public const byte PACKETTYPE_CLIENTSAWARE = 3;
     public const byte PACKETTYPE_DOORUPDATE = 4;
+    public const byte PACKETTYPE_KILL = 5;
 
     public int networkState = 0;
     private TcpListener server;
