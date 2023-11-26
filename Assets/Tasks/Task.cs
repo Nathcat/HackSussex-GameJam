@@ -15,5 +15,5 @@ public class Task : MonoBehaviour
         }
     }
 
-    public virtual void load();
+    public virtual void load() {}
 }
