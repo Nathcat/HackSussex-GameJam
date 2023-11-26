@@ -17,6 +17,10 @@ public class HunterController : MonoBehaviour
                 if ((networkController = collider.gameObject.GetComponent<NetworkedPlayer>()) != null) {
                     networkController.Kill();
                     StartCoroutine(KillCooldown());
+
+                    GameObject[] hunterSpawns = GameObject.FindObjectsWithTag("hunterspawn");
+                    GameObject spawn = hunterSpawns[Random.Range(0, hunterSpawns.Length)];
+                    transform.position = spawn.transform.position;
                     break;
                 }
             }

@@ -469,6 +469,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 25.126564, y: 4.927581}
   m_EdgeRadius: 0
+--- !u!1 &4393147200450545787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3269679713965560017}
+  m_Layer: 0
+  m_Name: HunterSpawnMarker
+  m_TagString: hunterspawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3269679713965560017
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4393147200450545787}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1664780226672733314}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6153953343009750805
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,6 +771,7 @@ Transform:
   - {fileID: 3951744896826425328}
   - {fileID: 8266048883089680566}
   - {fileID: 8173015214168883936}
+  - {fileID: 3269679713965560017}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5067933216428865872
