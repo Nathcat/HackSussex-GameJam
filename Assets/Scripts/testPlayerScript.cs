@@ -9,6 +9,7 @@ public class testPlayerScript : MonoBehaviour
     private Rigidbody2D rigidBody;
     private SpriteRenderer spriteR;
     public Sprite[] spriteArray;
+    private int order = 0;
 
 
     private float moveConst = 200;
@@ -29,7 +30,7 @@ public class testPlayerScript : MonoBehaviour
             rigidBody.AddForce(transform.up* moveConst * Time.deltaTime);
             //Debug.Log("w");
             spriteR.sprite = spriteArray[2];
-            //spriteR.OrderInLayer --; 
+            spriteR.sortingOrder = order--; 
 
             if (Input.GetKey("a"))
             {
@@ -51,6 +52,7 @@ public class testPlayerScript : MonoBehaviour
                 //Debug.Log("s");
                 spriteR.sprite = spriteArray[1];
                 //sprite.flipY = true;
+                spriteR.sortingOrder = order++; 
             }
 
         }
@@ -67,6 +69,7 @@ public class testPlayerScript : MonoBehaviour
                 rigidBody.AddForce(transform.up* moveConst * Time.deltaTime);
                 //Debug.Log("w");
                 spriteR.sprite = spriteArray[2];
+                spriteR.sortingOrder = order--; 
             }
             else if (Input.GetKey("d"))
             {
@@ -80,6 +83,7 @@ public class testPlayerScript : MonoBehaviour
                 rigidBody.AddForce(transform.up* -moveConst * Time.deltaTime);
                 //Debug.Log("s");
                 spriteR.sprite = spriteArray[1];
+                spriteR.sortingOrder = order++;
             }
 
         }
@@ -95,6 +99,7 @@ public class testPlayerScript : MonoBehaviour
                 rigidBody.AddForce(transform.up* moveConst * Time.deltaTime);
                 //Debug.Log("w");
                 spriteR.sprite = spriteArray[2];
+                spriteR.sortingOrder = order--; 
             }
             else if (Input.GetKey("a"))
             {
@@ -108,6 +113,7 @@ public class testPlayerScript : MonoBehaviour
                 rigidBody.AddForce(transform.up* -moveConst * Time.deltaTime);
                 //Debug.Log("s");
                 spriteR.sprite = spriteArray[1];
+                spriteR.sortingOrder = order++; 
             }
         }
         else if (Input.GetKey("s"))
@@ -115,12 +121,14 @@ public class testPlayerScript : MonoBehaviour
             rigidBody.AddForce(transform.up* -moveConst * Time.deltaTime);
             //Debug.Log("s");
             spriteR.sprite = spriteArray[1];
+            spriteR.sortingOrder = order++;
 
             if (Input.GetKey("w"))
             {
                 rigidBody.AddForce(transform.up* moveConst * Time.deltaTime);
                 //Debug.Log("w");
                 spriteR.sprite = spriteArray[2];
+                spriteR.sortingOrder = order--; 
             }
             else if (Input.GetKey("d"))
             {
