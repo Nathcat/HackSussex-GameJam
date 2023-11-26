@@ -43,7 +43,7 @@ public class slide_task : Task
                 if (y >= x - 18 && y <= x + 18)
                 {
                     IsMoving = false;
-                    eventsystem.GetComponent<task_manager>().tasks += 1;
+                    //eventsystem.GetComponent<task_manager>().tasks += 1;
                     complete = true;
                     host.gameObject.SetActive(false);
                 }

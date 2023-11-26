@@ -71,7 +71,7 @@ public class tyler_says : Task
             index++;
             if (index >= 4)
             {
-                eventsystem.GetComponent<task_manager>().tasks += 1;
+                //eventsystem.GetComponent<task_manager>().tasks += 1;
                 complete = true;
                 host.gameObject.SetActive(false);
                 colours.Clear();
@@ -95,7 +95,7 @@ public class tyler_says : Task
         {
             if (index >= 4)
             {
-                eventsystem.GetComponent<task_manager>().tasks += 1;
+                //eventsystem.GetComponent<task_manager>().tasks += 1;
                 complete = true;
                 host.gameObject.SetActive(false);
                 colours.Clear();
@@ -122,7 +122,7 @@ public class tyler_says : Task
         {
             if (index >= 4)
             {
-                eventsystem.GetComponent<task_manager>().tasks += 1;
+                //eventsystem.GetComponent<task_manager>().tasks += 1;
                 complete = true;
                 host.gameObject.SetActive(false);
                 colours.Clear();
@@ -149,7 +149,7 @@ public class tyler_says : Task
         {
             if (index >= 4)
             {
-                eventsystem.GetComponent<task_manager>().tasks += 1;
+                //eventsystem.GetComponent<task_manager>().tasks += 1;
                 complete = true;
                 host.gameObject.SetActive(false);
                 colours.Clear();
@@ -177,7 +177,7 @@ public class tyler_says : Task
         {
             if (index >= 4)
             {
-                eventsystem.GetComponent<task_manager>().tasks += 1;
+                //eventsystem.GetComponent<task_manager>().tasks += 1;
                 complete = true;
                 host.gameObject.SetActive(false);
                 colours.Clear();

@@ -46,7 +46,7 @@ public class wires : Task
         
         if (welded == 4)
         {
-            eventsystem.GetComponent<task_manager>().tasks += 1;
+            //eventsystem.GetComponent<task_manager>().tasks += 1;
             complete = true;
             host.gameObject.SetActive(false);
         }
@@ -61,7 +61,7 @@ public class wires : Task
 
         if (welded == 4)
         {
-            eventsystem.GetComponent<task_manager>().tasks += 1;
+            //eventsystem.GetComponent<task_manager>().tasks += 1;
             complete = true;
             host.gameObject.SetActive(false);
         }
@@ -76,7 +76,7 @@ public class wires : Task
 
         if (welded == 4)
         {
-            eventsystem.GetComponent<task_manager>().tasks += 1;
+            //eventsystem.GetComponent<task_manager>().tasks += 1;
             complete = true;
             host.gameObject.SetActive(false);
         }
@@ -91,7 +91,7 @@ public class wires : Task
 
         if (welded == 4)
         {
-            eventsystem.GetComponent<task_manager>().tasks += 1;
+            //eventsystem.GetComponent<task_manager>().tasks += 1;
             complete = true;
             host.gameObject.SetActive(false);
         }

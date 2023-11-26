@@ -59,7 +59,7 @@ public class fishing : Task
             slide.value += 0.1f;
             if (slide.value >= 1)
             {
-                eventsystem.GetComponent<task_manager>().tasks += 1;
+                //eventsystem.GetComponent<task_manager>().tasks += 1;
                 complete = true;
                 host.gameObject.SetActive(false);
             }

@@ -161,7 +161,7 @@ public class mastermindScript : Task
         }
         if (digit1.text == (code / 8).ToString() && digit2.text == ((code % 8) / 4).ToString() && digit3.text == ((code % 4) / 4).ToString() && digit4.text == ((code % 2) / 4).ToString())
         {
-            eventsystem.GetComponent<task_manager>().tasks += 1;
+            //eventsystem.GetComponent<task_manager>().tasks += 1;
             complete = true;
             host.gameObject.SetActive(false);
             code = Random.Range(0, 16);
