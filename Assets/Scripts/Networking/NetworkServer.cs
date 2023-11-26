@@ -131,7 +131,7 @@ public class NetworkServer : MonoBehaviour
                     byte[] length_buffer = BitConverter.GetBytes(parent.doors.Length);
                     Buffer.BlockCopy(length_buffer, 0, door_packet, 1, 4);
                     for (int i = 0; i < parent.doors.Length; i++) {
-                        door_packet[i+5] = parent.doors[i].GetComponent<doorScript>().id;
+                        door_packet[i+5] = parent.doors[i].id;
                     }
 
                     // Forward to other clients 

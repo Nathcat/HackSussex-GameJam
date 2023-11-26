@@ -19,6 +19,9 @@ public class WorldGenerator : MonoBehaviour
 
     private RoomConstruct[] RoomConstructs;
 
+    [HideInInspector]
+    public doorScript[] doors;
+
     Directions[,] ConnectionsMap;
     bool[,] ExistenceMap;
     int RoomsGenerated;
@@ -43,6 +46,20 @@ public class WorldGenerator : MonoBehaviour
 
         // Pick task locations
         PickTaskLocations();
+        DelegateDoorIds();
+    }
+
+    private void DelegateDoorIds()
+    {
+        int count = 128;
+        doors = GetComponentsInChildren<doorScript>();
+        GameObject obj = GameObject.Find("GameManager");
+        if (obj != null) obj.GetComponent<NetworkServer>().doors = doors;
+        foreach (doorScript door in doors)
+        {
+            door.id = (byte)count;
+            count++;
+        }
     }
 
     public void PickTaskLocations()
