@@ -39,7 +39,7 @@ public class NetworkServer : MonoBehaviour
 
                 if (join_packet[0] == PACKETTYPE_CLIENT_JOIN) {
                     parent.clients[parent.pClientsEnd] = client;
-                    parent.clientIDs[parent.pClientsEnd] = join_packet[1];
+                    parent.clientIDs[parent.pClientsEnd] = (byte) parent.pClientsEnd;
                     parent.streams[parent.pClientsEnd] = stream;
 
                     byte[] resp = new byte[] {
