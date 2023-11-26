@@ -10,10 +10,12 @@ public class SurvivorController : MonoBehaviour
             
             foreach (Collider2D collider in colliders) {
                 Debug.Log(collider.gameObject);
-                TaskLocation taskloc;
-                if ((taskloc = collider.gameObject.GetComponent<TaskLocation>()) != null) {
+                TaskLocation taskloc = collider.gameObject.GetComponent<TaskLocation>();
+                if (taskloc != null) {
+                    Debug.Log("Got task location");
                     Task task = taskloc.GetTask();
                     if (!task.complete) {
+                        Debug.Log("load task");
                         task.load();
                         break;
                     }
