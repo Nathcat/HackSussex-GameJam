@@ -15,10 +15,13 @@ public class WorldGenerator : MonoBehaviour
     Directions[,] connectionsMap;
     bool[,] existenceMap;
 
+    private void Start()
+    {
+        Generate(42);
+    }
+
     public void Generate(int seed)
     {
-        Debug.Log("Seed is " + seed);
-
         // Cache the room constructs of room prefabs
         roomConstructs = new RoomConstruct[rooms.Length];
         for (int i = 0; i < rooms.Length; i++) roomConstructs[i] = rooms[i].GetComponent<RoomConstruct>();
@@ -28,7 +31,8 @@ public class WorldGenerator : MonoBehaviour
         Random.InitState(seed);
 
         // Begin facing up
-        GenerateRoomAt(8, 8);
+        int half = WorldSize / 2;
+        GenerateRoomAt(half, half);
     }
 
     private void GenerateConnectionsAt(int x, int y)
@@ -47,8 +51,8 @@ public class WorldGenerator : MonoBehaviour
         RoomConstruct decision = possibilities[Random.Range(0, possibilities.Length)];
 
         // Instantiate
-        Vector2 position = new(x * RoomConstruct.ROOM_RADUIS * 2, y * RoomConstruct.ROOM_RADUIS * 2);
-        position -= new Vector2(RoomConstruct.ROOM_RADUIS * WorldSize, RoomConstruct.ROOM_RADUIS * WorldSize);
+        Vector2 position = new(x * RoomConstruct.ROOM_RADIUS * 2, y * RoomConstruct.ROOM_RADIUS * 2);
+        position -= new Vector2(RoomConstruct.ROOM_RADIUS * WorldSize, RoomConstruct.ROOM_RADIUS * WorldSize);
         Instantiate(decision.gameObject, position, Quaternion.identity, transform);
 
         // Write to array
