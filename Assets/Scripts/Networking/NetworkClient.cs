@@ -119,8 +119,6 @@ public class NetworkClient : MonoBehaviour
                         byte[] door_buffer = new byte[1];
                         parent.stream.Read(door_buffer);
 
-                        Debug.Log(door_buffer[0]);
-                        
                         foreach (doorScript door in parent.worldGenerator.doors) {
                             if (door.checkId(door_buffer[0])) door.id = door_buffer[0];
                         }

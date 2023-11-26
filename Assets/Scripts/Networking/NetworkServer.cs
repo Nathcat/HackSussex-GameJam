@@ -98,8 +98,8 @@ public class NetworkServer : MonoBehaviour
 
                 NetworkStream stream = parent.clients[i].GetStream();
                 stream.Write(resp, 0, 7);
-                ForwarderThread thr = new ForwarderThread(parent, i);
-                Thread t = new Thread(new ThreadStart(thr.Proc));
+                parent.ft = new ForwarderThread(parent, i);
+                Thread t = new Thread(new ThreadStart(parent.ft.Proc));
                 t.IsBackground = true;
                 t.Start();
             }
@@ -109,6 +109,7 @@ public class NetworkServer : MonoBehaviour
     public class ForwarderThread {
         public int i;
         public NetworkServer parent;
+        public byte[] door_packet = null;
 
         public ForwarderThread(NetworkServer parent, int i) {
             this.i = i;
@@ -119,6 +120,11 @@ public class NetworkServer : MonoBehaviour
             while (parent.networkState == STATE_PLAYING && parent.runThreads) {
                 byte[] header = new byte[1];
                 parent.streams[i].Read(header);
+
+                if (door_packet != null) {
+                    parent.streams[i].Write(door_packet);
+                    door_packet = null;
+                }
 
                 if (header[0] == PACKETTYPE_FRAME_UPDATE) {
                     byte[] update = new byte[14];
@@ -207,6 +213,7 @@ public class NetworkServer : MonoBehaviour
     private bool runThreads = true;
     public WorldGenerator worldGen;
     public Vector3[] playerPositions = new Vector3[6];
+    public ForwarderThread ft;
 
     public void StartServer(int worldSeed) {
         ClientsJoinThread thr = new ClientsJoinThread(this, worldSeed);

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class DoorButtonController : MonoBehaviour
 {
@@ -38,5 +39,16 @@ public class DoorButtonController : MonoBehaviour
             Door.id = (byte)(Door.id & 0x7F);
             imageRenderer.sprite = closeSprite;
         }
+
+        WorldGenerator worldGen = FindFirstObjectByType<WorldGenerator>();
+        byte[] door_packet = new byte[worldGen.doors.Length + 5];
+        door_packet[0] = NetworkServer.PACKETTYPE_DOORUPDATE;
+        byte[] length_buffer = BitConverter.GetBytes(worldGen.doors.Length);
+        Buffer.BlockCopy(length_buffer, 0, door_packet, 1, 4);
+        for (int i = 0; i < worldGen.doors.Length; i++) {
+            door_packet[i+5] = worldGen.doors[i].id;
+        }
+
+        GameObject.Find("GameManager").GetComponent<NetworkServer>().ft.door_packet = door_packet;
     }
 }
