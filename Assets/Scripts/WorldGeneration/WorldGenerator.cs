@@ -47,8 +47,6 @@ public class WorldGenerator : MonoBehaviour
     {
         // Pick room
         RoomConstruct[] possibilities = ComputePossibleRooms(x, y);
-        if (possibilities.Length == 0) return;
-
         RoomConstruct decision = possibilities[Random.Range(0, possibilities.Length)];
 
         // Instantiate
