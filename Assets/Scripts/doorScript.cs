@@ -7,8 +7,10 @@ public class doorScript : MonoBehaviour
     public bool vertical;
     public byte id;
     //public bool open;
-    private Rigidbody2D rigidBody;
+    //private Rigidbody2D rigidBody;
     private BoxCollider2D collider;
+    private SpriteRenderer spriteR;
+    public Sprite verticalSprite;
     private float closedPos;
     private float openPos;
 
@@ -20,11 +22,13 @@ public class doorScript : MonoBehaviour
     void Start()
     {
         
-        rigidBody = GetComponent<Rigidbody2D>();
+        //rigidBody = GetComponent<Rigidbody2D>();
+        spriteR = GetComponent<SpriteRenderer>();
         collider = GetComponent<BoxCollider2D>();
 
         if(vertical)
         {
+            spriteR.sprite = verticalSprite;
             closedPos = gameObject.transform.position.y;
             openPos = gameObject.transform.position.y + 3;
         }
