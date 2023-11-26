@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WorldGenerator : MonoBehaviour
@@ -56,8 +57,13 @@ public class WorldGenerator : MonoBehaviour
         // Write to array
         foreach (DirectionsOffsetPair pair in decision.GetConnections())
         {
-            connectionsMap[x + pair.offset.x, y + pair.offset.y] = pair.directions;
-            existenceMap[x + pair.offset.x, y + pair.offset.y] = true;
+            int rX = x + pair.offset.x;
+            int rY = y + pair.offset.y;
+
+            if (rX < 0 || rY < 0 || rX >= WorldSize || rY >= WorldSize) continue;
+
+            connectionsMap[rX, rY] = pair.directions;
+            existenceMap[rX, rY] = true;
         }
 
         // Generate Connections
