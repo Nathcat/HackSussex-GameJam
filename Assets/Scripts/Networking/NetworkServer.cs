@@ -132,7 +132,7 @@ public class NetworkServer : MonoBehaviour
                     Buffer.BlockCopy(update, 2, x, 0, 4);
                     Buffer.BlockCopy(update, 6, y, 0, 4);
                     Buffer.BlockCopy(update, 10, z, 0, 4);
-                    Vector2 pos = new Vector3(
+                    Vector3 pos = new Vector3(
                         BitConverter.ToSingle(x),
                         BitConverter.ToSingle(y),
                         BitConverter.ToSingle(z)
@@ -206,7 +206,7 @@ public class NetworkServer : MonoBehaviour
     private int pClientsEnd = 0;
     private bool runThreads = true;
     public WorldGenerator worldGen;
-    public Vector2[] playerPositions = new Vector2[6];
+    public Vector3[] playerPositions = new Vector3[6];
 
     public void StartServer(int worldSeed) {
         ClientsJoinThread thr = new ClientsJoinThread(this, worldSeed);
