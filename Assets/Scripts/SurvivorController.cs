@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SurvivorController : MonoBehaviour
 {
@@ -21,6 +22,18 @@ public class SurvivorController : MonoBehaviour
                         break;
                     }
                 }
+            }
+
+            GameObject[] tasklocs = GameObject.FindGameObjectsWithTag("task");
+            bool won = true;
+            foreach (GameObject task in tasklocs) {
+                if (!task.GetComponent<TaskLocation>().GetTask().complete) {
+                    won = false;
+                }
+            }
+
+            if (won) {
+                SceneManager.LoadScene("Win");
             }
         }
     }

@@ -14,7 +14,7 @@ public class SurvivorScriptMenu : MonoBehaviour
         client.serverHostname = ipAddress.text;
         client.StartClient();
 
-        buttonText.text = "Connecting...";
+        buttonText.text = "Waiting for round to begin...";
         buttonText.transform.parent.gameObject.GetComponent<Button>().enabled = false;
 
         StartCoroutine(WaitTillConnected());
