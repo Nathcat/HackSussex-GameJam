@@ -157,6 +157,7 @@ public class NetworkClient : MonoBehaviour
 
         if (!worldGenerated && worldGenSeed != 0) {
             worldGenerator.Generate(worldGenSeed);
+            worldGenerated = true;
         }
 
         if (connected) {
