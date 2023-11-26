@@ -19,6 +19,9 @@ public class WorldGenerator : MonoBehaviour
 
     private RoomConstruct[] RoomConstructs;
 
+    [HideInInspector]
+    public doorScript[] doors;
+
     Directions[,] ConnectionsMap;
     bool[,] ExistenceMap;
     int RoomsGenerated;
@@ -48,10 +51,9 @@ public class WorldGenerator : MonoBehaviour
 
     private void DelegateDoorIds()
     {
-        GameObject obj = GameObject.Find("GameManager");
-
         int count = 128;
-        doorScript[] doors = GetComponentsInChildren<doorScript>();
+        doors = GetComponentsInChildren<doorScript>();
+        GameObject obj = GameObject.Find("GameManager");
         if (obj != null) obj.GetComponent<NetworkServer>().doors = doors;
         foreach (doorScript door in doors)
         {
