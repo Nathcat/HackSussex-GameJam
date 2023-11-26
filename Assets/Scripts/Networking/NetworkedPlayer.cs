@@ -12,6 +12,16 @@ public class NetworkedPlayer : MonoBehaviour
     public void Update() {
         if (allowSet) {
             transform.position = position;
+
+            if (client.hunterID == clientID) {
+                gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                gameObject.GetComponent<ParticleSystem>().Play();
+            }
+            else {
+                gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                gameObject.GetComponent<ParticleSystem>().Stop();
+            }
         }
     }
 

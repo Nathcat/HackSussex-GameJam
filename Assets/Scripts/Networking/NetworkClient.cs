@@ -49,6 +49,7 @@ public class NetworkClient : MonoBehaviour
             parent.stream.Read(resp, 0, 7);
             if (resp[0] == NetworkServer.PACKETTYPE_CLIENTSAWARE) {
                 parent.clientIDs = new byte[6];
+                parent.hunterID = resp[1];
                 for (int i = 0; i < 6; i++) {
                     parent.clientIDs[i] = resp[i+1];
                     
@@ -161,6 +162,7 @@ public class NetworkClient : MonoBehaviour
     public WorldGenerator worldGenerator;
     private bool worldGenerated = false;
     public bool alive = true;
+    public byte hunterID;
 
     void Start() {
         clientID = (byte) UnityEngine.Random.Range(0, 255);
@@ -181,9 +183,14 @@ public class NetworkClient : MonoBehaviour
 
             if (isHunter) {
                 gameObject.AddComponent<HunterController>();
+                gameObject.transform.GetChild(1).gameObject.SetActive(true);
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                gameObject.GetComponent<ParticleSystem>().Play();
             }
             else {
                 gameObject.AddComponent<SurvivorController>();
+                gameObject.transform.GetChild(1).gameObject.SetActive(false);
+                gameObject.GetComponent<ParticleSystem>().Stop();
             }
         }
 

@@ -621,10 +621,6 @@ PrefabInstance:
       propertyPath: players.Array.data[5]
       value: 
       objectReference: {fileID: 1751971813}
-    - target: {fileID: 5899768655476964639, guid: a3640874fcf09a745a9c43fe02fd4dfe, type: 3}
-      propertyPath: client
-      value: 
-      objectReference: {fileID: 5571433495274132507}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
