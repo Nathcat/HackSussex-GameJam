@@ -8,7 +8,7 @@ public class HunterController : MonoBehaviour
     public bool allowKill = true;
 
     public void Start() {
-        GameObject[] hunterSpawns = GameObject.FindObjectsWithTag("hunterspawn");
+        GameObject[] hunterSpawns = GameObject.FindGameObjectsWithTag("hunterspawn");
         GameObject spawn = hunterSpawns[Random.Range(0, hunterSpawns.Length)];
         transform.position = spawn.transform.position;
     }
@@ -24,7 +24,7 @@ public class HunterController : MonoBehaviour
                     networkController.Kill();
                     StartCoroutine(KillCooldown());
 
-                    GameObject[] hunterSpawns = GameObject.FindObjectsWithTag("hunterspawn");
+                    GameObject[] hunterSpawns = GameObject.FindGameObjectsWithTag("hunterspawn");
                     GameObject spawn = hunterSpawns[Random.Range(0, hunterSpawns.Length)];
                     transform.position = spawn.transform.position;
                     break;
