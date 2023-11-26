@@ -150,8 +150,8 @@ public class NetworkClient : MonoBehaviour
                     parent.stream.Read(buffer);
                     byte task_id = buffer[0];
 
-                    foreach (Task task in parent.tasks) {
-                        task.Complete = true;
+                    foreach (int i = 0; i < parent.tasks.Count; i++) {
+                        parent.tasks[i].Complete = true;
                     }                    
                 }
             }
@@ -172,7 +172,7 @@ public class NetworkClient : MonoBehaviour
     private bool worldGenerated = false;
     public bool alive = true;
     public byte hunterID;
-    public Task[] tasks;
+    public ArrayList<Task> tasks;
 
     void Start() {
         clientID = (byte) UnityEngine.Random.Range(0, 255);

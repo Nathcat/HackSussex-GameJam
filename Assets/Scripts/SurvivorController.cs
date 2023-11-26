@@ -10,9 +10,11 @@ public class SurvivorController : MonoBehaviour
             
             foreach (Collider2D collider in colliders) {
                 Task task;
-                if ((task = collider.gameObject.GetComponent<task>()) != null) {
-                    task.load();
-                    break;
+                if ((task = collider.gameObject.GetComponent<Task>()) != null) {
+                    if (!task.complete) {
+                        task.load();
+                        break;
+                    }
                 }
             }
         }

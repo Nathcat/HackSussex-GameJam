@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1646754658096573852}
-  - component: {fileID: 8925538418488092036}
+  - component: {fileID: 4321131364514042759}
   m_Layer: 0
   m_Name: TaskLocation
-  m_TagString: Untagged
+  m_TagString: task
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8925538418488092036
+--- !u!114 &4321131364514042759
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,10 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d94eef5ab14ea443b68e36a01284e19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tasks:
-  - {fileID: 8831346874651751632, guid: ff16c63aa6e921f4fb8a16bc689126b3, type: 3}
-  - {fileID: 5509463101150703189, guid: bd5785e7870760843926209099398af1, type: 3}
-  - {fileID: 4729847686203777751, guid: 91b67cb88924ff94898352e49dbf11fa, type: 3}
-  - {fileID: 7362670671544316535, guid: 42fc069095c41e24fbcbb626e8d66d0e, type: 3}
-  - {fileID: 4510660541498840394, guid: 2323ada56d305d94cb7541c578a2f435, type: 3}
-  - {fileID: 904762161997020177, guid: 8bb854c95fd1d27448755181b77c482c, type: 3}
+  tasks: []
