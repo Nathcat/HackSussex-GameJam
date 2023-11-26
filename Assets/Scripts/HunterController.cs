@@ -15,6 +15,7 @@ public class HunterController : MonoBehaviour
                 if (collider == gameObject.GetComponent<Collider2D>()) continue;
                 if ((networkController = collider.gameObject.GetComponent<NetworkedPlayer>()) != null) {
                     networkController.Kill();
+                    break;
                 }
             }
         }
