@@ -190,6 +190,7 @@ public class NetworkClient : MonoBehaviour
         gameObject.GetComponent<NetworkedPlayer>().allowSet = false;
 
         if (!worldGenerated && worldGenSeed != 0) {
+            Debug.Log("World gen in netclient");
             worldGenerator.Generate(worldGenSeed);
             worldGenerated = true;
 
