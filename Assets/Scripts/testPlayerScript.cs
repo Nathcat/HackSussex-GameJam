@@ -89,9 +89,9 @@ public class testPlayerScript : MonoBehaviour
                 //Debug.Log("w");
                 sprite.flipY = false;
             }
-            else if (Input.GetKey("d"))
+            else if (Input.GetKey("a"))
             {
-                rigidBody.AddForce(transform.right* moveConst * Time.deltaTime);
+                rigidBody.AddForce(transform.right* -moveConst * Time.deltaTime);
                 //Debug.Log("d");
                 sprite.flipX = false;
             }
@@ -120,11 +120,11 @@ public class testPlayerScript : MonoBehaviour
                 //Debug.Log("d");
                 sprite.flipX = false;
             }
-            else if (Input.GetKey("s"))
+            else if (Input.GetKey("a"))
             {
-                rigidBody.AddForce(transform.up* -moveConst * Time.deltaTime);
-                //Debug.Log("s");
-                sprite.flipY = true;
+                rigidBody.AddForce(transform.right* -moveConst * Time.deltaTime);
+                //Debug.Log("a");
+                sprite.flipX = true;
             }
         }
     }
