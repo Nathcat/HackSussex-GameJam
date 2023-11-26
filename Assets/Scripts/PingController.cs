@@ -1,9 +1,16 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PingController : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] playerPings = new GameObject[0];
+
+    [SerializeField]
+    private GameObject doorPrefab;
+
+    [SerializeField]
+    private GameObject taskPrefab;
 
     private NetworkServer server;
 
@@ -19,6 +26,15 @@ public class PingController : MonoBehaviour
             Vector3 position = server.playerPositions[i];
             if (position == null) continue;
             playerPings[i].transform.position = Camera.main.WorldToScreenPoint(position);
+        }
+    }
+
+    public void GenerateDoorButtons()
+    {
+        foreach (doorScript door in FindObjectsByType<doorScript>(FindObjectsSortMode.None))
+        {
+            GameObject button = Instantiate(doorPrefab, transform);
+            button.GetComponent<DoorButtonController>().Door = door;
         }
     }
 }

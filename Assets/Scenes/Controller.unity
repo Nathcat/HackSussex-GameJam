@@ -443,7 +443,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -492,6 +492,8 @@ MonoBehaviour:
   - {fileID: 472918167}
   - {fileID: 1554396204}
   - {fileID: 2004730659}
+  doorPrefab: {fileID: 9207470782379888521, guid: 927c7e3c9e7649b41bc52d3b8254fe69, type: 3}
+  taskPrefab: {fileID: 0}
 --- !u!1 &1554396204
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,12 +617,12 @@ MonoBehaviour:
   clientIDs: 000000000000
   worldGen: {fileID: 2106692831}
   playerPositions:
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
+  - {x: 0, y: 0, z: 3.3608543e+21}
+  - {x: 0, y: 0, z: 4.61e-43}
+  - {x: 0, y: 0, z: 2.7965338e+38}
+  - {x: 0, y: 0, z: 4.62e-43}
+  - {x: 0, y: 0, z: 6.9e-44}
+  - {x: 0, y: 0, z: 4.62e-43}
 --- !u!4 &1615178504
 Transform:
   m_ObjectHideFlags: 0
