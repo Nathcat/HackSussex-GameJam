@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 4546614036640608375}
   - component: {fileID: 5899768655476964639}
   - component: {fileID: 5182631374610920801}
-  - component: {fileID: 4940099935213408126}
   - component: {fileID: 6366326713180688436}
   - component: {fileID: 7286537361420021885}
   m_Layer: 0
@@ -196,8 +195,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clientID: 0
   position: {x: 0, y: 0, z: 0}
+  prevFrame: {x: 0, y: 0, z: 0}
   allowSet: 0
   client: {fileID: 5182631374610920801}
+  spriteR: {fileID: 0}
+  spriteArray: []
 --- !u!114 &5182631374610920801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,19 +228,6 @@ MonoBehaviour:
   worldGenerator: {fileID: 0}
   alive: 1
   hunterID: 0
---- !u!114 &4940099935213408126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1191312318017182782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 742a347cb26585c46b97f6d986c3917d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  killRadius: 2.5
 --- !u!198 &6366326713180688436
 ParticleSystem:
   m_ObjectHideFlags: 0
