@@ -152,17 +152,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdc859dfd9539e542ace46cb86d8e414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WorldSize: 32
+  WorldSize: 16
   rooms:
   - {fileID: 8969819382118034159, guid: f15dbedc8cf8fb04bbc40ef0de42345d, type: 3}
-  - {fileID: 8969819382118034159, guid: 6b31fdba4ee38fb4cb78ebb3c8b93d63, type: 3}
-  - {fileID: 8969819382118034159, guid: d6f201a4a41b1044fb41821b67a24306, type: 3}
-  - {fileID: 8969819382118034159, guid: b8b1370a071d77e44ab366c1453f5061, type: 3}
-  - {fileID: 8969819382118034159, guid: d42e6334f80ab974094cb801fc0afa26, type: 3}
+  - {fileID: 8969819382118034159, guid: f3e9764791a037f4b956eea7ee55c90d, type: 3}
+  - {fileID: 8969819382118034159, guid: 4d3e1242d549d6d4694a77977aa76ca3, type: 3}
+  - {fileID: 8969819382118034159, guid: 45f1823808707ce47a444b3faaa0631d, type: 3}
+  - {fileID: 8969819382118034159, guid: 3ab71a9dd29b6c14fa99c1704a986561, type: 3}
   - {fileID: 8969819382118034159, guid: 5d49497ea4c697849bacbf8fcc630ff9, type: 3}
   - {fileID: 8969819382118034159, guid: 5f5cc70ae3839ec4ea2525c15c201c11, type: 3}
   - {fileID: 8969819382118034159, guid: 73302d0aece71c74e931ff14e46d4dd7, type: 3}
+  - {fileID: 8969819382118034159, guid: 9b1baf84aa3b9034f95cddb4c71a3507, type: 3}
+  - {fileID: 8969819382118034159, guid: 7167a3ebef39867418ad8d3aafb1f680, type: 3}
   - {fileID: 8969819382118034159, guid: 7ed99a2ef3b937e4898eb0e35e958db6, type: 3}
+  - {fileID: 8969819382118034159, guid: 61ea83038b702534b86e447056f5d7f1, type: 3}
+  - {fileID: 8969819382118034159, guid: b9f452e730f8461448b472d67fc0cadf, type: 3}
+  - {fileID: 8850469868248765760, guid: 6b31fdba4ee38fb4cb78ebb3c8b93d63, type: 3}
+  - {fileID: 3606580971640830147, guid: d6f201a4a41b1044fb41821b67a24306, type: 3}
+  - {fileID: 5203956177900553359, guid: b8b1370a071d77e44ab366c1453f5061, type: 3}
+  - {fileID: 496242715124253844, guid: d42e6334f80ab974094cb801fc0afa26, type: 3}
 --- !u!4 &314633976
 Transform:
   m_ObjectHideFlags: 0
@@ -239,7 +247,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
