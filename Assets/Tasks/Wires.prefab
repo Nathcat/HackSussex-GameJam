@@ -152,7 +152,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5473556725459640653
 RectTransform:
   m_ObjectHideFlags: 0
@@ -261,6 +261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825f254ac6514e841802dba95b4e311f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
+  Complete: 0
   redwire: {fileID: 7653607256811897782}
   bluewire: {fileID: 7859149622768417537}
   yellowwire: {fileID: 2054766335114172431}

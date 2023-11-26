@@ -771,7 +771,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3634901551390004365
 RectTransform:
   m_ObjectHideFlags: 0
@@ -832,6 +832,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f9bc736abbdef4fa5eca4b416f771a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 1
+  Complete: 0
   textbox: {fileID: 8615425559552193239}
   slide: {fileID: 8960279969480915141}
   panel: {fileID: 4864125875797364252}

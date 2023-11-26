@@ -2012,7 +2012,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4146812512093618284
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2108,6 +2108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e233ff68817c604abb66b71fd6cbb24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
+  Complete: 0
   digit1: {fileID: 1752226249697222279}
   digit2: {fileID: 5787021976301240616}
   digit3: {fileID: 3824365551329770524}
@@ -2116,6 +2118,9 @@ MonoBehaviour:
   ind2: {fileID: 5917623510910269294}
   ind3: {fileID: 8865191153481169862}
   ind4: {fileID: 2655902461859526822}
+  eventsystem: {fileID: 0}
+  host: {fileID: 0}
+  wins: 0
   code: 0
 --- !u!1 &8907903968010826500
 GameObject:
