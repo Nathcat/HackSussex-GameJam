@@ -19,9 +19,6 @@ public class WorldGenerator : MonoBehaviour
         // Cache the room constructs of room prefabs
         roomConstructs = new RoomConstruct[rooms.Length];
         for (int i = 0; i < rooms.Length; i++) roomConstructs[i] = rooms[i].GetComponent<RoomConstruct>();
-
-        // Generate for testing
-        Generate(Random.seed);
     }
 
     public void Generate(int seed)

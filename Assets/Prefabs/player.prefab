@@ -188,6 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clientID: 0
   position: {x: 0, y: 0, z: 0}
+  allowSet: 0
 --- !u!114 &5182631374610920801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f8c633e18dbc65458d8ffd0d383aae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serverHostname: 127.0.0.1
   clientID: 0
   isHunter: 0
   connected: 0
