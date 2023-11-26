@@ -171,7 +171,14 @@ public class NetworkClient : MonoBehaviour
     private bool runThreads = true;
     public NetworkedPlayer[] players = new NetworkedPlayer[6];
     public WorldGenerator worldGenerator;
-    public bool worldGenerated = false;
+    private bool WorldGenerated = false;
+    public bool worldGenerated {
+        get { return WorldGenerated; }
+        set {
+            WorldGenerated = value;
+            Debug.Log("World generated has been set to " + value);
+        }
+    }
     public bool alive = true;
     public byte hunterID;
     public ArrayList tasks;
