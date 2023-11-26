@@ -16,6 +16,7 @@ public class SurvivorController : MonoBehaviour
                     Task task = taskloc.GetTask();
                     if (!task.complete) {
                         Debug.Log("load task");
+                        task.gameObject.SetActive(true);
                         task.load();
                         break;
                     }
