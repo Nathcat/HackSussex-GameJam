@@ -440,6 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdc859dfd9539e542ace46cb86d8e414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NumberOfTasks: 3
   WorldSize: 16
   SpawnRoom: {fileID: 8969819382118034159, guid: 46987d95aa9ff294ba95cc5bc61f771b, type: 3}
   Rooms:

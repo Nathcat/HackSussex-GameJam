@@ -5,9 +5,10 @@ using UnityEngine;
 public class HunterController : MonoBehaviour
 {
     public float killRadius = 5f;
+    public bool allowKill = true;
 
     public void Update() {
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) && allowKill) {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, killRadius);
 
             foreach (Collider2D collider in colliders) {
@@ -15,9 +16,16 @@ public class HunterController : MonoBehaviour
                 if (collider == gameObject.GetComponent<Collider2D>()) continue;
                 if ((networkController = collider.gameObject.GetComponent<NetworkedPlayer>()) != null) {
                     networkController.Kill();
+                    StartCoroutine(KillCooldown());
                     break;
                 }
             }
         }
+    }
+
+    private IEnumerator KillCooldown() {
+        allowKill = false;
+        yield return new WaitForSeconds(15f);
+        allowKill = true;
     }
 }
